@@ -1,4 +1,4 @@
-.image1{
+.image1 {
   margin-top: 2%;
   margin-bottom: 0.2%;
   height: 300px;
@@ -8,73 +8,61 @@
   background-size: contain;
 }
 
-
-
-.mainmenu{
+.mainmenu {
   background-color: #fff;
   width: 40%;
-  position: ;
-
+  position: relative;
 }
 
-.mainmenu1{
-margin-left: 5%;
-max-height: 1000%;
+.mainmenu1 {
+  margin-left: 5%;
+  max-height: 1000%;
 }
 
-.mainmenu1 h3{
+.mainmenu1 h3 {
   padding-top: 15%;
   margin-bottom: 2%;
 }
 
-
-.div1{
-
- display: inline-flex;
+.div1 {
+  display: inline-flex;
   width: 100em;
-
-
 }
 
-
-.acceuilimg{
+.acceuilimg {
   background-color: white;
   margin-top: 2%;
   margin-left: 2%;
   margin-bottom: 5%;
   width: 48.2%;
-  height:75%;
+  height: 75%;
 }
 
-.acceuilimg h3{
+.acceuilimg h3 {
   margin-top: 2%;
   font-family: 'Inter', sans-serif;
   margin-left: 3%;
 }
 
-
-.acceuilimg h2{
+.acceuilimg h2 {
   font-size: 200%;
   padding-top: 3%;
   font-family: 'Inter', sans-serif;
   margin-left: 3%;
 }
 
-.acceuilimg p{
+.acceuilimg p {
   margin-top: 1%;
-  font-family: "Gill Sans",;
+  font-family: "Gill Sans", sans-serif;
   padding-left: 3%;
   padding-right: 3%;
 }
 
-.endmenu{
+.endmenu {
   margin-bottom: 10%;
 }
 
-hr{
+hr {
   width: 95%;
   border-color: #fafafa;
 }
-
-
-

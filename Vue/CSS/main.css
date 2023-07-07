@@ -1,7 +1,7 @@
-
 h1, h2 {
   margin-top: 1%;
   text-align: center;
+  color: #333;
 }
 
 p, ol {
@@ -10,7 +10,6 @@ p, ol {
   margin-bottom: 20px;
   margin-top: 1%;
 }
-
 
 #home-image {
   display: block;
