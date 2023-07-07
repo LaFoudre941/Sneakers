@@ -32,7 +32,7 @@ ini_set('display_errors', 1);
             </form>
             <li><a href="register.php" id="register-button">REGISTER</a></li>
             <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
-            </ul>
+    </ul>
         </nav>
     </div>
 

@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         if (!$user || $user['mdp'] != $password) {
-            $emailError = "Invalid email or password, Try again to log in or create an account";
+            $emailError = "Invalid email or password, Try again to log in or <a style='text-decoration: underline red;' href='register.php'>create an account</a>";
         }
     }
 }

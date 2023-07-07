@@ -47,13 +47,9 @@ h1{
 }
 
 
-.errorconnexion{
+.errorconnexion, .errorconnexion a{
   margin-bottom: 20%;
-
   color: red;
   text-align:center;
-
-
-
 }
 

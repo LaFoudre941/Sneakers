@@ -33,7 +33,15 @@ ini_set('display_errors', 1);
                 <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
             </form>
             <li><a href="register.php" id="register-button">REGISTER</a></li>
-            <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
+            <?php
+        // Ajouter la condition pour afficher le lien LOG IN ou LOG OUT
+        if (isset($_SESSION['email'])) {
+            echo '<li><a href="connexion.php?logout=1" id="login-button" style="color: red;" >LOG OUT</a></li>';
+        } else {
+            echo '<li><a href="register.php" id="register-button">REGISTER</a></li>
+            li><a href="connexion.php" id="login-button">LOG IN</a></li>';
+        }
+        ?>
     </ul>
 </nav>
 </div>

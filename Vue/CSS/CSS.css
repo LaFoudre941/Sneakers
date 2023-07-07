@@ -71,6 +71,15 @@ footer {
   right: 0;
 }
 
+nav button{
+  border: 120px;
+  background-color: #fff;
+    color: red;
+
+}
+
+
+
 .footerp {
   padding-top: 2%;
   text-align: center;

@@ -15,6 +15,24 @@
     public function selectWhereUser ($email){
         return $this->unModele->selectWhereUser ($email);
     }
+
+    //Deconnexion et suppression de la session
+    public function logout() {
+    session_unset(); // Supprimer toutes les variables de session
+    session_destroy(); // Détruire la session
+    header("Refresh:0"); // Rafraîchit la page en cours
+    } 
+
+
+    public function isLoggedIn() {
+        // Vérifiez si l'utilisateur est connecté
+        return isset($_SESSION['email']);
+    }
+
+
+
 }
+
+
    
 ?>
