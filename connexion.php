@@ -8,6 +8,31 @@ ini_set('display_errors', 1);
     require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
     //instancier le controleur
     $unControleur = new Controleur ();
+
+
+    // Traitement de la connexion
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['idconnexion'];
+    $password = $_POST['password'];
+
+    $user = $unControleur->selectWhereUser($email);
+
+    if ($user && $user['mdp'] == $password) {
+        $_SESSION['email'] = $email;
+        if ($user['whoAmI'] == 'admin') {
+            // Redirection vers la page d'administration
+            header('Location: admin.php');
+            exit();
+        } else {
+            // Redirection vers la page du compte utilisateur
+            header('Location: youraccount.php');
+            exit();
+        }
+    } else {
+        $error_message = "Invalid email or password.";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,14 +62,31 @@ ini_set('display_errors', 1);
         </nav>
     </div>
 
+
+
+
+
+
     <h1>Welcome</h1>
     <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline blue;" href="register.php">create an account</a></p>
 
-    <input class="connexionuser" type="text" name="idconnexion" placeholder="Email or username">
+    <!-- ... -->
+    <form method="POST" action="connexion.php">
+        <input class="connexionuser" type="text" name="idconnexion" placeholder="Email or username">
+        <input class="connexionuser" type="password" name="password" placeholder="Password">
+        <button class="btnconnexion" type="submit">Continue</button>
+    </form>
+    <!-- ... -->
 
-    <input class="connexionuser" type="password" name="password" placeholder="Password">
 
-    <button class="btnconnexion">Continue</button>
+
+
+
+
+
+
+
+
 
     <footer>
         <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
