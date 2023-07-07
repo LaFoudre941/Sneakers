@@ -10,7 +10,10 @@ ini_set('display_errors', 1);
     $unControleur = new Controleur ();
 
 
-    // Traitement de la connexion
+// Initialisation des variables d'erreur
+$emailError = $passwordError = '';
+
+// Traitement de la connexion
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['idconnexion'];
     $password = $_POST['password'];
@@ -29,11 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     } else {
-        $error_message = "Invalid email or password.";
+        if (!$user || $user['mdp'] != $password) {
+            $emailError = "Invalid email or password, Try again to log in or create an account";
+        }
     }
 }
 
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -77,7 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button class="btnconnexion" type="submit">Continue</button>
     </form>
     <!-- ... -->
+    <br>
 
+    <p class="errorconnexion"><?php echo $emailError; ?></p>
 
 
 

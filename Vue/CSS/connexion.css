@@ -31,7 +31,7 @@ h1{
 
 .btnconnexion{
   margin-top: 2%;
-  margin-bottom: 20%;
+  margin-bottom: 0%;
     display: block;
   margin-left: auto;
   margin-right: auto;
@@ -42,6 +42,17 @@ h1{
   background-color: #3367D6;
     color: white;
   font-family: 'Inter', sans-serif;
+
+
+}
+
+
+.errorconnexion{
+  margin-bottom: 20%;
+
+  color: red;
+  text-align:center;
+
 
 
 }
