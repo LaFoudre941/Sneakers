@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/CSS.css" rel="stylesheet" />
+    <link href="./css/sell.css" rel="stylesheet" />
+    <title>Sell</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html"><img src="./images/logo.png" alt="logo"></a></li>
+            <li><a href="buying.html">Buying</a></li>
+            <li><a href="youraccount.html">Your account</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="sell.html">Sell</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <form action="/search" method="GET">
+                <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
+            </form>
+            <li><a href="register.html" id="register-button">REGISTER</a></li>
+            <li><a  href="connexion.html" id="login-button">LOG IN</a></li>
+        </ul>
+    </nav>
+
+    <main class="sell-container">
+        <form action="/upload-product" method="POST" enctype="multipart/form-data" class="sell-form">
+            <label for="product-image">Upload product image:</label>
+            <br><br>
+            <input type="file" id="product-image" name="product-image">
+            <br>
+            <label for="product-title">Product title:</label>
+            <input type="text" id="product-title" name="product-title">
+
+            <label for="product-description">Product description:</label>
+            <textarea id="product-description" name="product-description"></textarea>
+
+            <label for="product-price">Product price:</label>
+            <input type="number" id="product-price" name="product-price">
+
+            <label for="product-quantity">Product quantity:</label>
+            <input type="number" id="product-quantity" name="product-quantity">
+
+            <label for="selling-option">Selling option:</label>
+            <select id="selling-option" name="selling-option">
+                <option value="auction">Auctions</option>
+                <option value="buy-now">Buy it now</option>
+                <option value="best-offer">Best offer</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <footer>
+
+        <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
+        Copyright <br> © 2023 - YOURMARKET</p>
+
+    </footer>
+</body>
+</html>

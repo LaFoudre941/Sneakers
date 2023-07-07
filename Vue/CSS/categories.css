@@ -1,0 +1,35 @@
+.categories-list {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .category {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .category a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .category img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .category h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .category p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  

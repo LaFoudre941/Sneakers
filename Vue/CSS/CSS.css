@@ -2,18 +2,17 @@
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   color: #333;
-  margin: 0 0 0 0;
+  margin: 0;
+  padding: 0;
 }
 
-nav a{
+a {
   text-decoration: none;
 }
 
 body {
   font-size: 14px;
   background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
 }
 
 h1, h2 {
@@ -25,13 +24,11 @@ h1, h2 {
   margin: 0 auto;
 }
 
-
 nav {
   background-color: #fff;
   position: sticky;
   top: 0;
   z-index: 10;
-
 }
 
 nav ul {
@@ -65,17 +62,17 @@ nav ul li img {
   width: auto;
 }
 
-
-footer{
-  width:100%;
+footer {
+  width: 100%;
   background-color: #303030;
   bottom: 0;
   height: 20em;
+  left: 0;
+  right: 0;
 }
 
-
-.footerp{
+.footerp {
   padding-top: 2%;
-  text-align:center;
+  text-align: center;
   color: #9fa19f;
 }

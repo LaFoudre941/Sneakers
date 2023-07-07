@@ -22,8 +22,6 @@
 
 
     <div id="main-content">
-
-
         <nav>
             <ul>
                 <li><a href="index.php"><img src="./images/logo.png" alt="logo"></a></li>
@@ -38,7 +36,6 @@
                 <li><a href="register.php" id="register-button">REGISTER</a></li>
                 <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
             </ul>
-            
         </nav>
 
         <img src="./images/home_image.png" alt="Home image" id="home-image">
@@ -55,31 +52,13 @@
             <li>Best offer where you can negotiate directly with the seller. You can negotiate up to 5 times to conclude the final price of an article.</li>
         </ol>
 
-
-
-<hr style="width:100%">
-
-
-
-
-
-
-
-
-
+        <hr style="width:100%">
     </div>
 
-
-<footer>
-    
-
-
-
-<p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
-  Copyright <br> © 2023 - YOURMARKET</p>
-
-
-
-</footer>
+    <footer>
+        <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
+        Copyright <br>
+        © 2023 - YOURMARKET</p>
+    </footer>
 </body>
 </html>
