@@ -1,40 +1,32 @@
-<?php
-    session_start();
-   // session_start();
-    require_once("Controleur/controleur.class.php");
-    //instancier le controleur
-    $unControleur = new Controleur ();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="./css/connexion.css" rel="stylesheet" />
-    <link href="./css/CSS.css" rel="stylesheet" />
+    <link href="./Vue/css/connexion.css" rel="stylesheet" />
+    <link href="./Vue/css/CSS.css" rel="stylesheet" />
     <title>Connexion</title>
 </head>
 <body>
     <div id="main-content">
         <nav>
             <ul>
-                <li><a href="index.html"><img src="./images/logo.png" alt="logo"></a></li>
-                <li><a href="buying.html">Buying</a></li>
-                <li><a href="/account">Your account</a></li>
-                <li><a href="/categories">Categories</a></li>
-                <li><a href="/sell">Sell</a></li>
-                <li><a href="/cart">Cart</a></li>
+                <li><a href="index.php"><img src="./Vue/images/logo.png" alt="logo"></a></li>
+                <li><a href="buying.php">Buying</a></li>
+                <li><a href="youraccount.php">Your account</a></li>
+                <li><a href="categories.php">Categories</a></li>
+                <li><a href="sell.php">Sell</a></li>
+                <li><a href="cart.php">Cart</a></li>
                 <form action="/search" method="GET">
                     <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
                 </form>
-                <li><a href="register.html" id="register-button">REGISTER</a></li>
-                <li><a  href="connexion.html" id="login-button">LOG IN</a></li>
+                <li><a href="register.php" id="register-button">REGISTER</a></li>
+                <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
             </ul>
         </nav>
     </div>
 
     <h1>Welcome</h1>
-    <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline blue;" href="register.html">create an account</a></p>
+    <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline blue;" href="register.php">create an account</a></p>
 
     <input class="connexionuser" type="text" name="idconnexion" placeholder="Email or username">
 

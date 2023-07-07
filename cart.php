@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link href="./css/CSS.css" rel="stylesheet" />
-    <link href="./css/cart.css" rel="stylesheet" />
+    <link href="./Vue/css/CSS.css" rel="stylesheet" />
+    <link href="./Vue/css/cart.css" rel="stylesheet" />
 </head>
 <body>
+    <div id="main-content">
     <nav>
         <ul>
-            <li><a href="index.html"><img src="./images/logo.png" alt="logo"></a></li>
-            <li><a href="buying.html">Buying</a></li>
-            <li><a href="youraccount.html">Your account</a></li>
-            <li><a href="categories.html">Categories</a></li>
-            <li><a href="sell.html">Sell</a></li>
-            <li><a href="cart.html">Cart</a></li>
+            <li><a href="index.php"><img src="./Vue/images/logo.png" alt="logo"></a></li>
+            <li><a href="buying.php">Buying</a></li>
+            <li><a href="youraccount.php">Your account</a></li>
+            <li><a href="categories.php">Categories</a></li>
+            <li><a href="sell.php">Sell</a></li>
+            <li><a href="cart.php">Cart</a></li>
             <form action="/search" method="GET">
                 <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
             </form>
-            <li><a href="register.html" id="register-button">REGISTER</a></li>
-            <li><a href="connexion.html" id="login-button">LOG IN</a></li>
+            <li><a href="register.php" id="register-button">REGISTER</a></li>
+            <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
         </ul>
     </nav>
+    </div>
 
     <main>
         <h1>Shopping Cart</h1>

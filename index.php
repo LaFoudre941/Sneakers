@@ -1,17 +1,9 @@
-<?php
-    session_start();
-   // session_start();
-    require_once("Controleur/controleur.class.php");
-    //instancier le controleur
-    $unControleur = new Controleur ();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
 
-    <link href="./Vue/css/buying.css" rel="stylesheet" />
+    <link href="./Vue/css/main.css" rel="stylesheet" />
     <link href="./Vue/css/CSS.css" rel="stylesheet" />
 
     <title>Main Page</title>
@@ -24,12 +16,12 @@
     <div id="main-content">
         <nav>
             <ul>
-                <li><a href="index.php"><img src="./images/logo.png" alt="logo"></a></li>
+                <li><a href="index.php"><img src="./Vue/images/logo.png" alt="logo"></a></li>
                 <li><a href="buying.php">Buying</a></li>
-                <li><a href="/account">Your account</a></li>
-                <li><a href="/categories">Categories</a></li>
-                <li><a href="/sell">Sell</a></li>
-                <li><a href="/cart">Cart</a></li>
+                <li><a href="youraccount.php">Your account</a></li>
+                <li><a href="categories.php">Categories</a></li>
+                <li><a href="sell.php">Sell</a></li>
+                <li><a href="cart.php">Cart</a></li>
                 <form action="/search" method="GET">
                     <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
                 </form>
@@ -38,7 +30,7 @@
             </ul>
         </nav>
 
-        <img src="./images/home_image.png" alt="Home image" id="home-image">
+        <img src="./Vue/images/home_image.png" alt="Home image" id="home-image">
 
         <h1>Welcome to YourMarket</h1>
 
