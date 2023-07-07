@@ -17,7 +17,27 @@ class Modele
         
     }
 
+/***************************************** Requete SQL **************************************************************/
 
+    public function selectWhereUser ($email)
+    {
+        if ($this->unPdo != null){
+
+            $requete =" select * from User where email = :email ; " ;
+            $donnees =array(":email"=>$email);
+            //preparation de la requete avant execution
+
+            $select=$this->unPdo->prepare ($requete);
+            //execution de la requete
+            $select->execute ($donnees);
+            //extraction des donnees fetch
+            $unUser =$select->fetch (); // un seul, resultat
+            return $unUser;
+        }
+        else {
+            return null;
+        }
+    }
 
 
 
