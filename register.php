@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 <html>
 <head>
     <title>Registration Form</title>
-    <link href="./Vue/css/buying.css" rel="stylesheet" />
+    <link href="./Vue/css/register.css" rel="stylesheet" />
     <link href="./Vue/css/CSS.css" rel="stylesheet" />
 </head>
 <body>
