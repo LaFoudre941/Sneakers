@@ -71,21 +71,21 @@ hr {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 2% 5%; /* adjust as needed */
-  gap: 2%; 
+  margin: 2% 5%;
+  gap: 2%;
 }
 
 .product-item {
-  flex: 1 0 21%; /* flex-grow | flex-shrink | flex-basis */
+  flex: 1 0 21%;
   margin: 1%;
-  background-color: #f8f8f8; /* light gray background */
-  border: 1px solid #ddd; /* light gray border */
-  border-radius: 5px; /* rounded corners */
-  overflow: hidden; /* this will make the child elements also follow the rounded corners */
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .product-item:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* subtle hover effect */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .product-image {
