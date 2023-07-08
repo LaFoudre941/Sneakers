@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
     <title>Categories</title>
 </head>
 <body>
-    
+
 <?php
             require_once("vue/navbar.php");
 ?>
@@ -55,6 +55,8 @@ ini_set('display_errors', 1);
                 <p>Express your individuality and ride with confidence with our skateboarding sneakers. Designed for durability and board feel, these sneakers will help you nail those tricks and stand out at the skatepark.</p>
             </a>
         </div>
+
+        
     
     </div>
 </main>
