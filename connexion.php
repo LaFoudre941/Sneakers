@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <h1>Welcome</h1>
-    <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline blue;" href="register.php">create an account</a></p>
+    <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline;" href="register.php">create an account</a></p>
 
     <!-- ... -->
     <form method="POST" action="connexion.php">

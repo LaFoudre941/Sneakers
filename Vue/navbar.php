@@ -22,7 +22,7 @@
         // Ajouter la condition pour afficher le lien LOG IN ou LOG OUT
         if (isset($_SESSION['email'])) {
             echo '  <li>
-                    <form method="POST" action="youraccount.php">
+                    <form method="POST" action="'.htmlspecialchars($_SERVER['PHP_SELF']).'">
                     <button class="btndeconnexion" type="submit">LOG OUT</button>
                     </form>
                     </li>';

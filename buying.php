@@ -24,7 +24,7 @@ ini_set('display_errors', 1);
 
     <?php
             require_once("vue/navbar.php");
-?>
+    ?>
 
         <div class="div1">
             <div class="mainmenu">
