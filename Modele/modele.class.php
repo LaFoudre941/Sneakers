@@ -38,6 +38,20 @@ class Modele
             return null;
         }
     }
+    
+/***************************************  Gestion des Items *********************************/
+public function getItems()
+{
+    if ($this->unPdo != null) {
+        $requete = "SELECT * FROM Item;";
+        $select = $this->unPdo->prepare($requete);
+        $select->execute();
+        $items = $select->fetchAll(PDO::FETCH_ASSOC);
+        return $items;
+    } else {
+        return null;
+    }
+}
 
 
 }

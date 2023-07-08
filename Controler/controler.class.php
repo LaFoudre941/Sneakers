@@ -29,6 +29,12 @@
         return isset($_SESSION['email']);
     }
 
+/***************************************  Gestion des Items *********************************/
+
+    public function getItems() {
+        return $this->unModele->getItems();
+    }
+
 
 
 }

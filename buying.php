@@ -8,6 +8,9 @@ ini_set('display_errors', 1);
     require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
     //instancier le controleur
     $unControleur = new Controleur ();
+
+    // Récupérer les éléments de la base de données
+    $items = $unControleur->getItems();
 ?>
 
 <!DOCTYPE html>
@@ -57,52 +60,27 @@ ini_set('display_errors', 1);
                     </form>
                 </div>
             </div>
-
-            <div>
-                <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
-                    <br>
-                    <div class="acceuilimg">
-                        <h2>Step into Style: Discover Premium</h2>
-                        <h3>Sneakers at YOURMARKET</h3>
-                        <br>
-                        <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
+       
+        <div class="product-grid">
+            <?php foreach ($items as $item): ?>
+                <div class="product-item">
+                    <div class="product-image" style="background-image: url('./Vue/images/giphy1.gif');"></div>
+                    <div class="product-details">
+                        <h2 class="product-title"><?= $item['name'] ?></h2>
+                        <p class="product-description"><?= $item['info'] ?></p>
+                        <p class="product-price"><?= $item['price'] ?></p>
+                        <button class="add-to-cart-button">Add to Cart</button>
                     </div>
                 </div>
-                <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
-                    <br>
-                    <div class="acceuilimg">
-                        <h2>Step into Style: Discover Premium</h2>
-                        <h3>Sneakers at YOURMARKET</h3>
-                        <br>
-                        <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
-                    </div>
-                </div>
-                <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
-                    <br>
-                    <div class="acceuilimg">
-                        <h2>Step into Style: Discover Premium</h2>
-                        <h3>Sneakers at YOURMARKET</h3>
-                        <br>
-                        <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
-                    </div>
-                </div>
-                <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
-                    <br>
-                    <div class="acceuilimg">
-                        <h2>Step into Style: Discover Premium</h2>
-                        <h3>Sneakers at YOURMARKET</h3>
-                        <br>
-                        <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 
-        <footer>
-            <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
+    <footer>
+        <p class="footerp">
+            Author: Andre Khella and Ahmed Qejiou<br>
             Copyright <br>
-            © 2023 - YOURMARKET</p>
-        </footer>
-    
+            © 2023 - YOURMARKET
+        </p>
+    </footer>
 </body>
 </html>
