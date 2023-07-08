@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`User` (
   `email` VARCHAR(100) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
-  `fate_naissance` DATETIME NOT NULL,
+  `date_naissance` DATETIME NOT NULL,
   `mdp` VARCHAR(45) NOT NULL,
   `whoAmI` VARCHAR(45) NOT NULL,
   `adresse` VARCHAR(70) NOT NULL,

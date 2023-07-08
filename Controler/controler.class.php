@@ -36,9 +36,54 @@
     }
 
 
-
+/***************************************  Register User *********************************/
+   // Fonction pour nettoyer les entrées de l'utilisateur
+    private function cleanInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    public function registerUser() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Récupérer les données du formulaire et nettoyer les entrées
+            $email = $this->cleanInput($_POST['email']);
+            $name = $this->cleanInput($_POST['name']);
+            $firstname = $this->cleanInput($_POST['firstname']);
+            $birthdate = $this->cleanInput($_POST['date_naissance']);
+            $password = $this->cleanInput($_POST['mdp']);
+            $whoAmI = $this->cleanInput($_POST['whoAmI']);
+            $address = $this->cleanInput($_POST['adresse']);
+            $city = $this->cleanInput($_POST['city']);
+            $postalCode = $this->cleanInput($_POST['postacl_code']);
+            $country = $this->cleanInput($_POST['country']);
+            $phone = $this->cleanInput($_POST['phone']);
+    
+            // Valider les champs obligatoires
+            if (!$email || !$name || !$firstname || !$birthdate || !$password || !$address || !$city || !$postalCode || !$country || !$phone) {
+                // Si un champ obligatoire est vide, afficher une erreur
+                echo "Veuillez remplir tous les champs";
+                return;
+            }
+    
+            // Vérifier si l'utilisateur existe déjà dans la base de données
+            $existingUser = $this->unModele->selectWhereUser($email);
+            if ($existingUser) {
+                // L'utilisateur existe déjà, effectuer le traitement approprié (affichage d'un message d'erreur, redirection, etc.)
+                echo "L'utilisateur existe déjà";
+            } else {
+                // Hacher le mot de passe
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+                // L'utilisateur n'existe pas, vous pouvez appeler la fonction du modèle pour enregistrer l'utilisateur
+                $this->unModele->registerUser($email, $name, $firstname, $birthdate, $hashedPassword, $whoAmI, $address, $city, $postalCode, $country, $phone);
+                
+                echo "L'utilisateur a été enregistré avec succès";
+            }
+        }
+    }
+    
+    
 }
-
-
    
 ?>
