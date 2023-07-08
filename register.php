@@ -49,8 +49,8 @@ ini_set('display_errors', 1);
         <input type="text" id="adresse" name="adresse" placeholder="Enter your address"><br>
         <label for="city">City:</label><br>
         <input type="text" id="city" name="city"><br>
-        <label for="postacl_code">Postal Code:</label><br>
-        <input type="text" id="postacl_code" name="postal_code"><br>
+        <label for="postal_code">Postal Code:</label><br>
+        <input type="text" id="postal_code" name="postal_code"><br>
         <label for="country">Country:</label><br>
         <input type="text" id="country" name="country"><br>
         <label for="phone">Phone Number:</label><br>

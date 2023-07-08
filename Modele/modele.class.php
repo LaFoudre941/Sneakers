@@ -74,12 +74,14 @@ public function registerUser($email, $name, $firstname, $birthdate, $password, $
         try {
             $insert = $this->unPdo->prepare($requete);
             $insert->execute($donnees);
-            return true; // Retourne vrai si la requête est exécutée avec succès
+            return true;
         } catch(PDOException $e) {
-            throw new Exception($e->getMessage()); // Lance une exception si une erreur se produit
+            echo "Error: " . $e->getMessage();
+            return false;
         }
     } else {
-        throw new Exception("PDO is not defined."); // Lance une exception si unPdo n'est pas défini
+        echo "PDO is not defined.";
+        return false;
     }
 }
 

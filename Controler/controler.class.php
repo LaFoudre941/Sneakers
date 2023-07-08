@@ -55,7 +55,7 @@
             $whoAmI = $this->cleanInput($_POST['whoAmI']);
             $address = $this->cleanInput($_POST['adresse']);
             $city = $this->cleanInput($_POST['city']);
-            $postalCode = $this->cleanInput($_POST['postacl_code']);
+            $postalCode = $this->cleanInput($_POST['postal_code']);
             $country = $this->cleanInput($_POST['country']);
             $phone = $this->cleanInput($_POST['phone']);
     
