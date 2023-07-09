@@ -44,7 +44,15 @@ ini_set('display_errors', 1);
 
 
 
+<form method="post">
+    <input type="submit" name="button" value="Cliquez Ici" />
+</form>
 
+<?php
+if(isset($_POST['button'])){
+    echo "Hello World";
+}
+?>
 
     <h1>Welcome</h1>
     <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline;" href="register.php">create an account</a></p>
@@ -53,7 +61,7 @@ ini_set('display_errors', 1);
     <form method="POST" action="connexion.php">
         <input class="connexionuser" type="text" name="idconnexion" placeholder="Email or username">
         <input class="connexionuser" type="password" name="password" placeholder="Password">
-        <button class="btnconnexion" type="submit">Continue</button>
+        <button class="btnconnexion" name ="seconnecter" type="submit">Continue</button>
     </form>
 
 <?php
@@ -61,7 +69,8 @@ ini_set('display_errors', 1);
 $emailError = $passwordError = '';
 
 // Traitement de la connexion
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['seconnecter']))
+    { 
     $email = $_POST['idconnexion'];
     $password = $_POST['password'];
 

@@ -15,6 +15,7 @@ if (isset($_SESSION['email'])) {
         die();
     }
 } 
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,9 @@ if (isset($_SESSION['email'])) {
 
 <div class="container">
     <div class="account-info">
+
         <?php if ($user): ?>
+
             <h1>Your Account</h1>
             <p>Email: <?php echo $user['email']; ?></p>
             <p>Name: <?php echo $user['name']; ?></p>
@@ -46,10 +49,14 @@ if (isset($_SESSION['email'])) {
             <p>Postal Code: <?php echo $user['postal_code']; ?></p>
             <p>Country: <?php echo $user['country']; ?></p>
             <p>Phone: <?php echo $user['phone']; ?></p>
+
         <?php else: ?>
+
             <h1>Welcome</h1>
-            <p>You are not logged in. Please <a href="connexion.php">log in</a> or <a href="register.php">register</a>.</p>
+            <p class="youraccount">You are not logged in. Please <a href="connexion.php">log in</a> or <a href="register.php">register</a>.</p>
+
         <?php endif; ?>
+
     </div>
 </div>
 

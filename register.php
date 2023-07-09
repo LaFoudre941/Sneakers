@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -8,9 +9,8 @@ ini_set('display_errors', 1);
     require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
     //instancier le controleur
     $unControleur = new Controleur ();
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -24,11 +24,9 @@ ini_set('display_errors', 1);
     <?php
             require_once("vue/navbar.php");
     ?>
+
     <br>
-
-
-
-    <form class="register-form" method="POST">
+    <form class="register-form" method="POST" action="register.php">
         <label for="email">Email Address:</label><br>
         <input type="email" id="email" name="email" placeholder="Enter your email"><br>
         <label for="name">Name:</label><br>
@@ -51,16 +49,34 @@ ini_set('display_errors', 1);
         <input type="text" id="country" name="country"><br>
         <label for="phone">Phone Number:</label><br>
         <input type="tel" id="phone" name="phone"><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" name="register">
+        <button name="register" type="submit">Continue</button>
     </form>
+
+
 
 <?php
         // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
+    if(isset($_POST["register"]))
+    {   
+        echo('eedf');
         $unControleur->registerUser();
     }
 ?>
+
+
+
+
+   <form method="post">
+    <input type="submit" name="button" value="Cliquez Ici" />
+</form>
+
+<?php
+if(isset($_POST['button'])){
+    echo "Hello World";
+}
+?>
+
 
     <footer>
         <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>

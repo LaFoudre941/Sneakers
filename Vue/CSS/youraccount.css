@@ -1,14 +1,12 @@
 body {
-    font-size: 16px;
+
     background-color: #f0f0f0;
     font-family: 'Inter', sans-serif;
   }
   
   .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 70vh;
   }
   
   .account-info {
@@ -33,22 +31,14 @@ body {
     margin-bottom: 10px;
   }
   
-  footer {
-    background-color: #303030;
-    color: #9fa19f;
-    text-align: center;
-    padding: 15px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
+
   
-  a {
+  .youraccount a {
     color: #0056b3;
     text-decoration: none;
   }
   
-  a:hover {
+  .youraccount a:hover {
     text-decoration: underline;
   }
   

@@ -8,6 +8,18 @@ ini_set('display_errors', 1);
     require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
     //instancier le controleur
     $unControleur = new Controleur ();
+
+
+    $user = false;
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    $user = $unControleur->selectWhereUser($email);
+    if($user === false){
+        echo "No user found with email: " . $email;
+        die();
+    }
+} 
+
 ?>
 
 
@@ -27,8 +39,9 @@ ini_set('display_errors', 1);
             require_once("vue/navbar.php");
 ?>
 
+<?php if ($user): ?>
 
-    <main class="sell-container">
+            <main class="sell-container">
         <form action="/upload-product" method="POST" enctype="multipart/form-data" class="sell-form">
             <label for="product-image">Upload product image:</label>
             <br><br>
@@ -56,6 +69,15 @@ ini_set('display_errors', 1);
             <input type="submit" value="Submit">
         </form>
     </main>
+
+        <?php else: ?>
+            <div class="container">
+                <div class="account-info">
+                    <h1>Welcome</h1>
+                    <p class="youraccount">You are not logged in. Please <a href="connexion.php">log in</a> or <a href="register.php">register</a>.</p>
+                </div>
+            </div>
+        <?php endif; ?>
 
 
     <footer>

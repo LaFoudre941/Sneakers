@@ -45,7 +45,6 @@
         return $data;
     }
     public function registerUser() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les données du formulaire et nettoyer les entrées
             $email = $this->cleanInput($_POST['email']);
             $name = $this->cleanInput($_POST['name']);
@@ -80,7 +79,7 @@
                 
                 echo "L'utilisateur a été enregistré avec succès";
             }
-        }
+        
     }
     
     
