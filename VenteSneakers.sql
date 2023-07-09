@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`User` (
   `whoAmI` VARCHAR(45) NOT NULL,
   `adresse` VARCHAR(70) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
-  `postacl_code` VARCHAR(45) NOT NULL,
+  `postal_code` VARCHAR(45) NOT NULL,
   `country` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`email`))
@@ -134,3 +134,13 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (1, 'Nike Air Max 90', 1, 0, 0, 'Sneakers', 'Chaussures de sport', 5.0, 150.0, '2023-07-08 15:58:09.000000', '2023-07-10 12:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (2, 'Adidas Stan Smith', 0, 1, 0, 'Sneakers', 'Chaussures décontractées', 3.0, 100.0, '2023-07-09 09:30:00', '2023-07-12 18:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (3, 'Puma Suede Classic', 0, 0, 1, 'Sneakers', 'Chaussures rétro', 4.0, 80.0, '2023-07-10 14:00:00', '2023-07-15 12:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (4, 'Converse Chuck Taylor All Star', 1, 0, 0, 'Sneakers', 'Chaussures en toile', 5.0, 70.0, '2023-07-11 11:30:00', '2023-07-16 15:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (5, 'Reebok Classic Leather', 0, 1, 0, 'Sneakers', 'Chaussures de style rétro', 3.5, 90.0, '2023-07-12 10:00:00', '2023-07-18 12:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (6, 'New Balance 574', 0, 0, 1, 'Sneakers', 'Chaussures de course', 4.0, 120.0, '2023-07-13 14:30:00', '2023-07-20 10:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (7, 'Vans Old Skool', 1, 0, 0, 'Sneakers', 'Chaussures de skate', 5.0, 80.0, '2023-07-14 16:00:00', '2023-07-22 14:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (8, 'Asics Gel-Lyte III', 0, 1, 0, 'Sneakers', 'Chaussures de course légères', 3.5, 130.0, '2023-07-15 09:30:00', '2023-07-25 16:00:00', NULL, 'andre');
+INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (9, 'Nike Dunk Low', 0, 0, 1, 'Sneakers', 'Chaussures de basketball', 4.0, 160.0, '2023-07-16 12:00:00', '2023-07-28 11:30:00', NULL, 'andre');
