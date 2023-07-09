@@ -82,11 +82,7 @@
             }
         }
     }
-
-    /***************************************  Your Account *********************************/
-    function getUser($email) {
-        return $this->unModele->getUserByEmail($email);
-    }
+    
     
 }
    
