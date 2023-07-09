@@ -15,8 +15,8 @@ ini_set('display_errors', 1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
-    <link href="./Vue/css/categories.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/categories.css" rel="stylesheet" />
     <title>Categories</title>
 </head>
 <body>

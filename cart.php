@@ -16,8 +16,8 @@ ini_set('display_errors', 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
-    <link href="./Vue/css/cart.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/cart.css" rel="stylesheet" />
 </head>
 <body>
     

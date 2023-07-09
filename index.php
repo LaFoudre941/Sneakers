@@ -16,8 +16,8 @@ ini_set('display_errors', 1);
 <head>
     <meta charset="utf-8">
 
-    <link href="./Vue/css/main.css" rel="stylesheet" />
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/main.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
 
     <title>Main Page</title>
 </head>

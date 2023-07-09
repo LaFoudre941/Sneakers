@@ -20,8 +20,8 @@ ini_set('display_errors', 1);
 <html>
 <head>
     <title>Registration Form</title>
-    <link href="./Vue/css/register.css" rel="stylesheet" />
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/register.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
 </head>
 <body>
     

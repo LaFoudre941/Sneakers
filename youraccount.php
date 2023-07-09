@@ -22,8 +22,8 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
-    <link href="./Vue/css/youraccount.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/youraccount.css" rel="stylesheet" />
     <title>My account</title>
 </head>
 <body>
