@@ -1,13 +1,12 @@
 .image1 {
-  margin-top: 2%;
+  margin-top: 0;
   margin-bottom: 0.2%;
   height: 300px;
-  margin-left: 2%;
-  width: 96.5%;
+  width: 100%;
   color: #ffffff;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
-
 .mainmenu {
   background-color: #fff;
   width: 40%;
@@ -36,6 +35,7 @@
   margin-bottom: 5%;
   width: 48.2%;
   height: 75%;
+  padding: 2%;
 }
 
 .acceuilimg h3 {
@@ -128,3 +128,4 @@ hr {
   background-color: #0056b3;
   color: white;
 }
+

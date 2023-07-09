@@ -20,6 +20,18 @@ $items = $unControleur->getItems();
     <?php
     require_once("vue/navbar.php");
     ?>
+    <!-- Banniere  -->
+    <div>
+            <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
+                <br>
+                <div class="acceuilimg">
+                    <h2>Step into Style: Discover Premium</h2>
+                    <h3>Sneakers at YOURMARKET</h3>
+                    <br>
+                    <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
+                </div>
+            </div>
+        </div>
     
     <div class="div1">
         <div class="mainmenu">
@@ -43,6 +55,28 @@ $items = $unControleur->getItems();
                     <label for="price2"> 50 - 100 £</label><br>
                     <input type="checkbox" id="price3" name="price[]" value="100">
                     <label for="price3"> More than 100 £</label><br><br>
+                </form>
+                <hr>
+                <h3>Categories</h3>
+                <form class="endmenu" action="/action_page.php">
+                    <input type="checkbox" id="category1" name="category[]" value="running">
+                    <label for="category1"> Running Sneakers</label><br>
+                    <input type="checkbox" id="category2" name="category[]" value="basketball">
+                    <label for="category2"> Basketball Sneakers</label><br>
+                    <input type="checkbox" id="category3" name="category[]" value="luxury">
+                    <label for="category3"> Luxury Sneakers</label><br>
+                    <input type="checkbox" id="category4" name="category[]" value="skateboarding">
+                    <label for="category4"> Skateboarding Sneakers</label><br><br>
+                </form>
+                <hr>
+                <h3>Options</h3>
+                <form class="endmenu" action="/action_page.php">
+                    <input type="checkbox" id="option1" name="option[]" value="auctions">
+                    <label for="option1"> Auctions</label><br>
+                    <input type="checkbox" id="option2" name="option[]" value="buy-now">
+                    <label for="option2"> Buy it now</label><br>
+                    <input type="checkbox" id="option3" name="option[]" value="best-offer">
+                    <label for="option3"> Best offer</label><br><br>
                 </form>
             </div>
         </div>
