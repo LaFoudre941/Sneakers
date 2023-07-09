@@ -10,11 +10,11 @@ ini_set('display_errors', 1);
     $unControleur = new Controleur ();
 
     
-    if (isset($_SESSION['user_email'])) {
-        $user_email = $_SESSION['user_email'];
-        $user = $unControleur->selectWhereUser($user_email);
+    if (isset($_SESSION['email'])) {
+        $email = $_SESSION['email'];
+        $user = $unControleur->selectWhereUser($email);
         if($user === false){
-            echo "No user found with email: " . $user_email;
+            echo "No user found with email: " . $email;
             die();
         }
     } else {
@@ -50,11 +50,10 @@ ini_set('display_errors', 1);
 <p>Who Am I: <?php echo $user['whoAmI']; ?></p>
 <p>Address: <?php echo $user['adresse']; ?></p>
 <p>City: <?php echo $user['city']; ?></p>
-<p>Postal Code: <?php echo $user['postacl_code']; ?></p>
+<p>Postal Code: <?php echo $user['postal_code']; ?></p>
 <p>Country: <?php echo $user['country']; ?></p>
 <p>Phone: <?php echo $user['phone']; ?></p>
-    <!-- ... -->
-
+    
 <footer>
     <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
     Copyright <br>
