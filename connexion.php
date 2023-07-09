@@ -8,36 +8,6 @@ ini_set('display_errors', 1);
     require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
     //instancier le controleur
     $unControleur = new Controleur ();
-
-
-// Initialisation des variables d'erreur
-$emailError = $passwordError = '';
-
-// Traitement de la connexion
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['idconnexion'];
-    $password = $_POST['password'];
-
-    $user = $unControleur->selectWhereUser($email);
-
-    if ($user && $user['mdp'] == $password) {
-        $_SESSION['email'] = $email;
-        if ($user['whoAmI'] == 'admin') {
-            // Redirection vers la page d'administration
-            header('Location: admin.php');
-            exit();
-        } else {
-            // Redirection vers la page du compte utilisateur
-            header('Location: youraccount.php');
-            exit();
-        }
-    } else {
-        if (!$user || $user['mdp'] != $password) {
-            $emailError = "Invalid email or password, Try again to log in or <a style='text-decoration: underline red;' href='register.php'>create an account</a>";
-        }
-    }
-}
-
 ?>
 
 
@@ -85,6 +55,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input class="connexionuser" type="password" name="password" placeholder="Password">
         <button class="btnconnexion" type="submit">Continue</button>
     </form>
+
+<?php
+    // Initialisation des variables d'erreur
+$emailError = $passwordError = '';
+
+// Traitement de la connexion
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['idconnexion'];
+    $password = $_POST['password'];
+
+    $user = $unControleur->selectWhereUser($email);
+
+    if ($user && $user['mdp'] == $password) {
+        $_SESSION['email'] = $email;
+        if ($user['whoAmI'] == 'admin') {
+            // Redirection vers la page d'administration
+            header('Location: admin.php');
+            exit();
+        } else {
+            // Redirection vers la page du compte utilisateur
+            header('Location: youraccount.php');
+            exit();
+        }
+    } else {
+        if (!$user || $user['mdp'] != $password) {
+            $emailError = "Invalid email or password, Try again to log in or <a style='text-decoration: underline red;' href='register.php'>create an account</a>";
+        }
+    }
+}
+
+?>
     <!-- ... -->
     <br>
 

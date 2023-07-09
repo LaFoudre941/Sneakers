@@ -9,11 +9,7 @@ ini_set('display_errors', 1);
     //instancier le controleur
     $unControleur = new Controleur ();
 
-    // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        $unControleur->registerUser();
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +53,14 @@ ini_set('display_errors', 1);
         <input type="tel" id="phone" name="phone"><br>
         <input type="submit" value="Submit">
     </form>
+
+<?php
+        // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+        $unControleur->registerUser();
+    }
+?>
 
     <footer>
         <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
