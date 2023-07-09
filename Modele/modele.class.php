@@ -35,7 +35,7 @@ class Modele
             return $unUser;
         }
         else {
-            return null;
+            return false;
         }
     }
     
