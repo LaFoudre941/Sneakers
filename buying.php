@@ -12,8 +12,8 @@ $items = $unControleur->getItems();
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="./Vue/css/buying.css" rel="stylesheet" />
-    <link href="./Vue/css/CSS.css" rel="stylesheet" />
+    <link href="./Vue/CSS/buying.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
     <title>Buying Page</title>
 </head>
 <body>
