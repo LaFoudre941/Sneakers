@@ -84,7 +84,17 @@ public function registerUser($email, $name, $firstname, $birthdate, $password, $
         return false;
     }
 }
-
+/***************************************  Your Account *********************************/
+public function getUserByEmail($email) {
+    try {
+        $query = $this->unPdo->prepare("SELECT * FROM User WHERE email=:email");
+        $query->execute([':email' => $email]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
 
 
 
