@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -12,21 +11,53 @@ ini_set('display_errors', 1);
 ?>
 
 
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Form</title>
+    <meta charset="utf-8">
     <link href="./Vue/CSS/register.css" rel="stylesheet" />
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
+    <title>Register</title>
 </head>
 <body>
-    
-    <?php
-            require_once("vue/navbar.php");
-    ?>
+    <div id="main-content">
+        <nav>
+            <ul>
+                <li><a href="index.php"><img src="./Vue/images/logo.png" alt="logo"></a></li>
+                <li><a href="buying.php">Buying</a></li>
+                <li><a href="youraccount.php">Your account</a></li>
+                <li><a href="categories.php">Categories</a></li>
+                <li><a href="sell.php">Sell</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <form action="/search" method="GET">
+                    <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
+                </form>
+                <li><a href="register.php" id="register-button">REGISTER</a></li>
+                <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
+            </ul>
+        </nav>
+    </div>
 
-    <br>
-    <form class="register-form" method="POST" action="register.php">
+
+
+
+<form method="post">
+    <input type="submit" name="button" value="Cliquez Ici" />
+</form>
+
+<?php
+if(isset($_POST['button'])){
+    echo "Hello World";
+}
+?>
+
+
+
+    <!-- ... -->
+    <form method="POST" action="register.php">
         <label for="email">Email Address:</label><br>
         <input type="email" id="email" name="email" placeholder="Enter your email"><br>
         <label for="name">Name:</label><br>
@@ -53,8 +84,6 @@ ini_set('display_errors', 1);
         <button name="register" type="submit">Continue</button>
     </form>
 
-
-
 <?php
         // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
     if(isset($_POST["register"]))
@@ -63,25 +92,23 @@ ini_set('display_errors', 1);
         $unControleur->registerUser();
     }
 ?>
+    <!-- ... -->
+    <br>
 
 
 
 
-   <form method="post">
-    <input type="submit" name="button" value="Cliquez Ici" />
-</form>
 
-<?php
-if(isset($_POST['button'])){
-    echo "Hello World";
-}
-?>
+
+
+
+
 
 
     <footer>
         <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
-        Copyright <br> © 2023 - YOURMARKET</p>
+        Copyright <br>
+        © 2023 - YOURMARKET</p>
     </footer>
-
 </body>
 </html>
