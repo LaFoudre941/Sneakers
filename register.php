@@ -43,19 +43,6 @@ ini_set('display_errors', 1);
 
 
 
-
-<form method="post">
-    <input type="submit" name="button" value="Cliquez Ici" />
-</form>
-
-<?php
-if(isset($_POST['button'])){
-    echo "Hello World";
-}
-?>
-
-
-
     <!-- ... -->
     <form method="POST" action="register.php">
         <label for="email">Email Address:</label><br>
@@ -88,7 +75,6 @@ if(isset($_POST['button'])){
         // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
     if(isset($_POST["register"]))
     {   
-        echo('eedf');
         $unControleur->registerUser();
     }
 ?>

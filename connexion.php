@@ -43,17 +43,6 @@ ini_set('display_errors', 1);
 
 
 
-
-<form method="post">
-    <input type="submit" name="button" value="Cliquez Ici" />
-</form>
-
-<?php
-if(isset($_POST['button'])){
-    echo "Hello World";
-}
-?>
-
     <h1>Welcome</h1>
     <p class="psignin">Sign in to YOURMARKET or <a style="text-decoration: underline;" href="register.php">create an account</a></p>
 
@@ -76,7 +65,7 @@ if(isset($_POST['seconnecter']))
 
     $user = $unControleur->selectWhereUser($email);
 
-    if ($user && $user['mdp'] == $password) {
+    if ($user && password_verify($password, $user['mdp'])) {
         $_SESSION['email'] = $email;
         if ($user['whoAmI'] == 'admin') {
             // Redirection vers la page d'administration
