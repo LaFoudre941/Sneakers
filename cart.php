@@ -2,14 +2,24 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+session_start();
 
-    session_start();
-   // session_start();
-    require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
-    //instancier le controleur
-    $unControleur = new Controleur ();
+require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
+
+$unControleur = new Controleur();
+
+// Vérifier si le panier existe dans la session
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
+// Calculer le prix total
+$totalPrice = 0;
+foreach ($_SESSION['cart'] as $item) {
+    $totalPrice += $item['price'];
+}
+
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,23 +32,27 @@ ini_set('display_errors', 1);
 <body>
     
     <?php
-            require_once("vue/navbar.php");
+    require_once("vue/navbar.php");
     ?>
-
-
 
     <main>
         <h1>Shopping Cart</h1>
         <div class="cart-items">
-            <!-- LISTE DES ITEMS AJOUTES -->
+            <?php foreach ($_SESSION['cart'] as $item): ?>
+                <?php if (isset($item['name'])): ?>
+                    <p><?= $item['name'] ?></p>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
 
-        <div class="cart-summary">
-            <h2>Cart Summary</h2>
-            <p>Total Items: <span id="total-items">0</span></p>
-            <p>Total Price: <span id="total-price">$0.00</span></p>
-            <button id="checkout-button">Proceed to Checkout</button>
-        </div>
+    <div class="cart-summary">
+        <h2>Cart Summary</h2>
+        <p>Total Items: <span id="total-items"><?= count($_SESSION['cart']) ?></span></p>
+        <?php if (isset($totalPrice)): ?>
+            <p>Total Price: <span id="total-price">$<?= $totalPrice ?></span></p>
+        <?php endif; ?>
+        <button id="checkout-button">Proceed to Checkout</button>
+    </div>
     </main>
 
     <footer>

@@ -83,7 +83,47 @@
         }
     }
     
+    /***************************************  CART *********************************/
+    public function addToCart($itemId) {
+        $itemId = $this->cleanInput($itemId);
+        
+        $this->unModele->addToCart($itemId);
+    }
+    public function getItemById($itemId) {
+        if ($this->unPdo != null) {
+            $requete = "SELECT * FROM Item WHERE idItem = :id;";
+            $donnees = array(":id" => $itemId);
+            $select = $this->unPdo->prepare($requete);
+            $select->execute($donnees);
+            $item = $select->fetch(PDO::FETCH_ASSOC);
+            return $item;
+        } else {
+            return null;
+        }
+    }
     
+
+
+    public function removeFromCart($itemId) {
+        // Assurez-vous que $itemId est sécurisé avant de l'utiliser dans une requête SQL
+        $itemId = $this->cleanInput($itemId);
+        
+        $this->unModele->removeFromCart($itemId);
+    }
+    
+    // Changer la quantité d'un article
+    public function changeItemQuantity($itemId, $newQuantity) {
+        // Assurez-vous que $itemId et $newQuantity sont sécurisés avant de les utiliser dans une requête SQL
+        $itemId = $this->cleanInput($itemId);
+        $newQuantity = $this->cleanInput($newQuantity);
+    
+        $this->unModele->changeItemQuantity($itemId, $newQuantity);
+    }
+    
+    // Mettre à jour le prix total du panier
+    public function updateCartTotal() {
+        $this->unModele->updateCartTotal();
+    }
 }
    
 ?>

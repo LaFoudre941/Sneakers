@@ -6,6 +6,20 @@ session_start();
 require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
 $unControleur = new Controleur();
 $items = $unControleur->getItems();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
+    $itemId = $_POST['item_id'];
+    $item = $unControleur->getItemById($itemId);
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array();
+    }
+
+    array_push($_SESSION['cart'], $item);
+
+    // Ajouter l'article au panier dans la base de données
+    $unControleur->addToCart($itemId);
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,17 +36,17 @@ $items = $unControleur->getItems();
     ?>
     <!-- Banniere  -->
     <div>
-            <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
+        <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
+            <br>
+            <div class="acceuilimg">
+                <h2>Step into Style: Discover Premium</h2>
+                <h3>Sneakers at YOURMARKET</h3>
                 <br>
-                <div class="acceuilimg">
-                    <h2>Step into Style: Discover Premium</h2>
-                    <h3>Sneakers at YOURMARKET</h3>
-                    <br>
-                    <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
-                </div>
+                <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
             </div>
         </div>
-    
+    </div>
+
     <div class="div1">
         <div class="mainmenu">
             <div class="mainmenu1">
@@ -80,7 +94,6 @@ $items = $unControleur->getItems();
                 </form>
             </div>
         </div>
-
         <div class="product-grid">
             <?php foreach ($items as $item): ?>
                 <div class="product-item">
@@ -89,18 +102,41 @@ $items = $unControleur->getItems();
                         <h2 class="product-title"><?= $item['name'] ?></h2>
                         <p class="product-description"><?= $item['info'] ?></p>
                         <p class="product-price"><?= $item['price'] ?></p>
-                        <button class="add-to-cart-button">Add to Cart</button>
+                        <form method="POST" action="">
+                            <input type="hidden" name="item_id" value="<?= $item['idItem'] ?>">
+                            <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-    </div>
 
-    <footer>
-        <p class="footerp">
-            Author: Andre Khella and Ahmed Qejiou<br>
-            © 2023 - YOURMARKET
-        </p>
-    </footer>
-</body>
+        <footer>
+            <p class="footerp">
+                Author: Andre Khella and Ahmed Qejiou<br>
+                © 2023 - YOURMARKET
+            </p>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".add-to-cart-button").click(function(e) {
+                    e.preventDefault();
+                    var itemId = $(this).prev().val();
+
+                    $.ajax({
+                        url: '',
+                        method: 'POST',
+                        data: {
+                            item_id: itemId
+                        },
+                        success: function(response) {
+                            alert("Item added to cart!");
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
 </html>
