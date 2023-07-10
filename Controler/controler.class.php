@@ -34,6 +34,10 @@
     public function getItems() {
         return $this->unModele->getItems();
     }
+    
+    public function getItemsEmail($emailVendeur) {
+        return $this->unModele->getItemsEmail($emailVendeur);
+    }
 
 
 /***************************************  Register User *********************************/

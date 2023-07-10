@@ -111,12 +111,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
             <?php endforeach; ?>
         </div>
 
-        <footer>
-            <p class="footerp">
-                Author: Andre Khella and Ahmed Qejiou<br>
-                © 2023 - YOURMARKET
-            </p>
-        </footer>
+    <footer>
+        <p class="footerp">
+            Author: Andre Khella and Ahmed Qejiou<br>
+            © 2023 - YOURMARKET
+        </p>
+    </footer>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>

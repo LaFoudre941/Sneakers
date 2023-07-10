@@ -53,6 +53,18 @@ public function getItems()
     }
 }
 
+public function getItemsEmail($emailVendeur) {
+    if ($this->unPdo != null) {
+        $requete = "SELECT * FROM Item WHERE User_email_seller = :emailVendeur;";
+        $select = $this->unPdo->prepare($requete);
+        $select->execute(array(':emailVendeur' => $emailVendeur));
+        $items = $select->fetchAll(PDO::FETCH_ASSOC);
+        return $items;
+    } else {
+        return null;
+    }
+}
+
 /***************************************  Register User *********************************/
 public function registerUser($email, $name, $firstname, $birthdate, $password, $whoAmI, $address, $city, $postalCode, $country, $phone) {
     if ($this->unPdo != null) {

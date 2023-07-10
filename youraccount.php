@@ -4,18 +4,23 @@ ini_set('display_errors', 1);
 
 session_start();
 require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
-$unControleur = new Controleur ();
+$unControleur = new Controleur();
 
 $user = false;
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $user = $unControleur->selectWhereUser($email);
-    if($user === false){
+    if ($user === false) {
         echo "No user found with email: " . $email;
         die();
     }
-} 
+}
 
+// Récupérer les items associés à l'email du vendeur
+$items = [];
+if ($user) {
+    $items = $unControleur->getItemsEmail($email);
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +35,7 @@ if (isset($_SESSION['email'])) {
 <body>
 
 <?php
-    require_once("vue/navbar.php");
+require_once("vue/navbar.php");
 ?>
 
 <div class="container">
@@ -50,6 +55,16 @@ if (isset($_SESSION['email'])) {
             <p>Country: <?php echo $user['country']; ?></p>
             <p>Phone: <?php echo $user['phone']; ?></p>
 
+            <h2>Items for Sale</h2><br>
+            <?php foreach ($items as $item): ?>
+                <p>Item Name: <?php echo $item['name']; ?></p>
+                <p>Item Category: <?php echo $item['category']; ?></p>
+                <p>Price: <?php echo $item['price']; ?></p>
+                <br>
+            
+                
+            <?php endforeach; ?>
+
         <?php else: ?>
 
             <h1>Welcome</h1>
@@ -62,8 +77,8 @@ if (isset($_SESSION['email'])) {
 
 <footer>
     <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
-    Copyright <br>
-    © 2023 - YOURMARKET</p>
+        Copyright <br>
+        © 2023 - YOURMARKET</p>
 </footer>
 
 </body>
