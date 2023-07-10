@@ -111,7 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                 </div>
             <?php endforeach; ?>
         </div>
-<<<<<<< HEAD
+        </div>
+
 
     <footer>
         <p class="footerp">
@@ -119,10 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
             © 2023 - YOURMARKET
         </p>
     </footer>
-=======
         </div>
         
->>>>>>> 5cf91ff0517e9caaa008f08716e71d33660a97c2
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
@@ -144,11 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                 });
             });
         </script>
-        <footer>
-            <p class="footerp">
-                Author: Andre Khella and Ahmed Qejiou<br>
-                © 2023 - YOURMARKET
-            </p>
-        </footer>
+        
     </body>
 </html>
