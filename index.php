@@ -45,7 +45,7 @@ ini_set('display_errors', 1);
             <li>Best offer where you can negotiate directly with the seller. You can negotiate up to 5 times to conclude the final price of an article.</li>
         </ol>
 
-        <hr style="width:100%">
+        <hr style="width:90%; margin: auto;">
     
 
     <footer>

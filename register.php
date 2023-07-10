@@ -42,6 +42,9 @@ ini_set('display_errors', 1);
     </div>
 
 
+<div class="register-form">
+    <!-- ... -->
+    <form method="POST" action="register.php">
 
     <form method="POST" action="register.php" class="register-form">
         <label for="email">Email Address:</label><br>
@@ -67,6 +70,8 @@ ini_set('display_errors', 1);
         <label for="phone">Phone Number:</label><br>
         <input type="tel" id="phone" name="phone"><br>
         <input type="submit" value="Submit" name="register">
+    </form>
+</div>
         
     </form>
 <?php
