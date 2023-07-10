@@ -34,18 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
     <?php
     require_once("vue/navbar.php");
     ?>
-    <!-- Banniere  -->
-    <div>
-        <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
-            <br>
-            <div class="acceuilimg">
-                <h2>Step into Style: Discover Premium</h2>
-                <h3>Sneakers at YOURMARKET</h3>
-                <br>
-                <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="div1">
         <div class="mainmenu">
@@ -95,6 +84,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
             </div>
         </div>
         <div class="product-grid">
+            <!-- Banniere  -->
+            <div>
+                <div class="image1" style="background-image: url('./Vue/images/giphy1.gif');">
+                    <br>
+                    <div class="acceuilimg">
+                        <h2>Step into Style: Discover Premium</h2>
+                        <h3>Sneakers at YOURMARKET</h3>
+                        <br>
+                     <p>Explore a wide range of sneakers for men and women at YOURMARKET. Whether you're on the hunt for designer sneakers, the newest Nike releases, or rare men's sneakers, our selection has something for everyone. Browse through our popular sneaker options and discover the perfect addition to your sneaker collection today.</p>
+                    </div>
+                </div>
+            </div>
             <?php foreach ($items as $item): ?>
                 <div class="product-item">
                     <div class="product-image" style="background-image: url('./Vue/images/giphy1.gif');"></div>
@@ -110,13 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                 </div>
             <?php endforeach; ?>
         </div>
-
-        <footer>
-            <p class="footerp">
-                Author: Andre Khella and Ahmed Qejiou<br>
-                © 2023 - YOURMARKET
-            </p>
-        </footer>
+        </div>
+        
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
@@ -138,5 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                 });
             });
         </script>
+        <footer>
+            <p class="footerp">
+                Author: Andre Khella and Ahmed Qejiou<br>
+                © 2023 - YOURMARKET
+            </p>
+        </footer>
     </body>
 </html>

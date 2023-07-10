@@ -42,7 +42,7 @@ ini_set('display_errors', 1);
     </div>
 
 
-
+<div class="register-form">
     <!-- ... -->
     <form method="POST" action="register.php">
         <label for="email">Email Address:</label><br>
@@ -68,9 +68,8 @@ ini_set('display_errors', 1);
         <label for="phone">Phone Number:</label><br>
         <input type="tel" id="phone" name="phone"><br>
         <input type="submit" value="Submit" name="register">
-        <button name="register" type="submit">Continue</button>
     </form>
-
+</div>
 <?php
         // Appeler la fonction registerUser() du contrôleur pour gérer l'enregistrement de l'utilisateur
     if(isset($_POST["register"]))
