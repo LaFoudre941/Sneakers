@@ -88,6 +88,7 @@
         
         $this->unModele->addToCart($itemId);
     }
+
     public function getItemById($itemId) {
         if ($this->unPdo != null) {
             $requete = "SELECT * FROM Item WHERE idItem = :id;";
@@ -100,8 +101,6 @@
             return null;
         }
     }
-    
-
 
     public function removeFromCart($itemId) {
         // Assurez-vous que $itemId est sécurisé avant de l'utiliser dans une requête SQL
