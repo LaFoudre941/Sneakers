@@ -16,10 +16,12 @@ if (!isset($_SESSION['cart'])) {
 // Calculer le prix total
 $totalPrice = 0;
 foreach ($_SESSION['cart'] as $item) {
-    $totalPrice += $item['price'];
+    if (isset($item['price'])) {
+        $totalPrice += $item['price'];
+    }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
