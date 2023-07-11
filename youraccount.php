@@ -16,6 +16,23 @@ if (isset($_SESSION['email'])) {
     }
 }
 
+// If form data is posted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // If action is delete
+    if ($_POST["action"] == "delete") {
+        $unControleur->deleteItem($_POST["idItem"]);
+    }
+    // If action is update
+    elseif ($_POST["action"] == "update") {
+        $data = array(
+            "name" => $_POST["name"],
+            "category" => $_POST["category"],
+            "price" => $_POST["price"],
+        );
+        $unControleur->updateItem($_POST["idItem"], $data);
+    }
+}
+
 // Récupérer les items associés à l'email du vendeur
 $items = [];
 if ($user) {
@@ -60,9 +77,24 @@ require_once("vue/navbar.php");
                 <p>Item Name: <?php echo $item['name']; ?></p>
                 <p>Item Category: <?php echo $item['category']; ?></p>
                 <p>Price: <?php echo $item['price']; ?></p>
-                <br>
-            
+
+                <!-- Suppression -->
+                <form method="post">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idItem" value="<?php echo $item['idItem']; ?>">
+                    <input type="submit" value="Supprimer">
+                </form>
                 
+                <!-- Modification -->
+                <form method="post">
+                    <input type="hidden" name="action" value="update">
+                    <input type="hidden" name="idItem" value="<?php echo $item['idItem']; ?>">
+                    <input type="text" name="name" value="<?php echo $item['name']; ?>">
+                    <input type="text" name="category" value="<?php echo $item['category']; ?>">
+                    <input type="text" name="price" value="<?php echo $item['price']; ?>">
+                    <input type="submit" value="Modifier">
+                </form>
+                <br>
             <?php endforeach; ?>
 
         <?php else: ?>

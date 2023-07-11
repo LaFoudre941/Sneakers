@@ -65,6 +65,20 @@ public function getItemsEmail($emailVendeur) {
     }
 }
 
+public function deleteItem($id) {
+    $requete = "DELETE FROM Item WHERE idItem = :id";
+    $donnees = array(":id" => $id);
+    $select = $this->unPdo->prepare($requete);
+    $select->execute($donnees);
+}
+
+public function updateItem($id, $data) {
+    $requete = "UPDATE Item SET name=:name, category=:category, price=:price WHERE idItem = :id";
+    $donnees = array(":id" => $id, ":name" => $data['name'], ":category" => $data['category'], ":price" => $data['price']);
+    $select = $this->unPdo->prepare($requete);
+    $select->execute($donnees);
+}
+
 /***************************************  Register User *********************************/
 public function registerUser($email, $name, $firstname, $birthdate, $password, $whoAmI, $address, $city, $postalCode, $country, $phone) {
     if ($this->unPdo != null) {

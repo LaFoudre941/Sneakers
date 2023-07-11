@@ -39,6 +39,14 @@
         return $this->unModele->getItemsEmail($emailVendeur);
     }
 
+    public function deleteItem($id) {
+        $this->unModele->deleteItem($id);
+    }
+
+    public function updateItem($id, $data) {
+        $this->unModele->updateItem($id, $data);
+    }
+
 
 /***************************************  Register User *********************************/
    // Fonction pour nettoyer les entrées de l'utilisateur
