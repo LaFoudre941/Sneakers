@@ -47,6 +47,11 @@
         $this->unModele->updateItem($id, $data);
     }
 
+    public function addItem($email, $data) {
+        return $this->unModele->addItem($email, $data);
+    }
+    
+
 
 /***************************************  Register User *********************************/
    // Fonction pour nettoyer les entrées de l'utilisateur

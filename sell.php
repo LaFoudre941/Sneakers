@@ -1,16 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
+require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
+$unControleur = new Controleur ();
 
-
-    session_start();
-   // session_start();
-    require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
-    //instancier le controleur
-    $unControleur = new Controleur ();
-
-
-    $user = false;
+$user = false;
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $user = $unControleur->selectWhereUser($email);
@@ -20,6 +15,21 @@ if (isset($_SESSION['email'])) {
     }
 } 
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = [
+        'name' => $_POST['name'],
+        'info' => $_POST['info'],
+        'price' => $_POST['price'],
+        'delivery_price' => $_POST['delivery_price'],
+        'category' => $_POST['category'],
+        'sellBO' => isset($_POST['sellBO']) ? 1 : 0,  
+        'sellBID' => isset($_POST['sellBID']) ? 1 : 0,  
+        'sellBIN' => isset($_POST['sellBIN']) ? 1 : 0,  
+        'fromTime' => $_POST['fromTime'],
+        'toTime' => $_POST['toTime']
+    ];
+    $unControleur->addItem($_SESSION['email'], $data);
+}
 ?>
 
 
@@ -41,30 +51,37 @@ if (isset($_SESSION['email'])) {
 
 <?php if ($user): ?>
 
-            <main class="sell-container">
-        <form action="/upload-product" method="POST" enctype="multipart/form-data" class="sell-form">
-            <label for="product-image">Upload product image:</label>
-            <br><br>
-            <input type="file" id="product-image" name="product-image">
-            <br>
-            <label for="product-title">Product title:</label>
-            <input type="text" id="product-title" name="product-title">
+    <main class="sell-container">
+    <form action="" method="POST" enctype="multipart/form-data" class="sell-form">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name">
 
-            <label for="product-description">Product description:</label>
-            <textarea id="product-description" name="product-description"></textarea>
+            <label for="info">Product description:</label>
+            <textarea id="info" name="info"></textarea>
 
-            <label for="product-price">Product price:</label>
-            <input type="number" id="product-price" name="product-price">
+            <label for="price">Product price:</label>
+            <input type="number" id="price" name="price">
 
-            <label for="product-quantity">Product quantity:</label>
-            <input type="number" id="product-quantity" name="product-quantity">
+            <label for="delivery_price">Delivery Price:</label>
+            <input type="number" id="delivery_price" name="delivery_price">
 
-            <label for="selling-option">Selling option:</label>
-            <select id="selling-option" name="selling-option">
-                <option value="auction">Auctions</option>
-                <option value="buy-now">Buy it now</option>
-                <option value="best-offer">Best offer</option>
-            </select>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category">
+
+            <label for="sellBO">Sell by Offer:</label>
+            <input type="checkbox" id="sellBO" name="sellBO" value="1">
+
+            <label for="sellBID">Sell by Bid:</label>
+            <input type="checkbox" id="sellBID" name="sellBID" value="1">
+
+            <label for="sellBIN">Sell Buy It Now:</label>
+            <input type="checkbox" id="sellBIN" name="sellBIN" value="1">
+
+            <label for="fromTime">From:</label>
+            <input type="datetime-local" id="fromTime" name="fromTime">
+
+            <label for="toTime">To:</label>
+            <input type="datetime-local" id="toTime" name="toTime">
 
             <input type="submit" value="Submit">
         </form>
@@ -86,5 +103,3 @@ if (isset($_SESSION['email'])) {
         Copyright <br> © 2023 - YOURMARKET</p>
 
     </footer>
-</body>
-</html>
