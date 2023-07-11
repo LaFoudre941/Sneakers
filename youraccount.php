@@ -96,8 +96,8 @@ require_once("vue/navbar.php");
                         <input class="item-action" type="submit" value="Modifier">
                     </form>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+
         <?php else: ?>
 
             <h1>Welcome</h1>
