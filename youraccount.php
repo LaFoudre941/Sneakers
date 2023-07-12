@@ -19,11 +19,11 @@ if (isset($_SESSION['email'])) {
 // Si le form a ete post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    if ($_POST["action"] == "delete") {
+    if (isset($_POST['delete'])) {
         $unControleur->deleteItem($_POST["idItem"]);
     }
    
-    elseif ($_POST["action"] == "update") {
+    if (isset($_POST['edit'])) {
         $data = array(
             "name" => $_POST["name"],
             "category" => $_POST["category"],
@@ -83,7 +83,7 @@ require_once("vue/navbar.php");
                     <form method="post">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="idItem" value="<?php echo $item['idItem']; ?>">
-                        <input class="item-action" type="submit" value="Supprimer">
+                        <input name ="delete" class="item-action" type="submit" value="Supprimer">
                     </form>
 
                     <!-- Modification -->
@@ -93,7 +93,7 @@ require_once("vue/navbar.php");
                         <input type="text" name="name" value="<?php echo $item['name']; ?>">
                         <input type="text" name="category" value="<?php echo $item['category']; ?>">
                         <input type="text" name="price" value="<?php echo $item['price']; ?>">
-                        <input class="item-action" type="submit" value="Modifier">
+                        <input name ="edit" class="item-action" type="submit" value="Modifier">
                     </form>
                 </div>
             <?php endforeach; ?>

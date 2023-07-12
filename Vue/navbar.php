@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['sedeconnecter'])) {
    
         $unControleur->logout();
     }
@@ -16,7 +16,7 @@
             <li><a href="sell.php">Sell</a></li>
             <li><a href="cart.php">Cart</a></li>
             <form action="/search" method="GET">
-                <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
+                <input name ="sedeconnecter" style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
             </form>
         <?php
         // Ajouter la condition pour afficher le lien LOG IN ou LOG OUT

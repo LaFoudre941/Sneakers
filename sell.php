@@ -15,7 +15,7 @@ if (isset($_SESSION['email'])) {
     }
 } 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_SESSION['sell'])) {
     $data = [
         'name' => $_POST['name'],
         'info' => $_POST['info'],
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="toTime">To:</label>
             <input type="datetime-local" id="toTime" name="toTime">
 
-            <input type="submit" value="Submit">
+            <input name="sell" type="submit" value="Submit">
         </form>
     </main>
 
