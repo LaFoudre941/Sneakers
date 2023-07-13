@@ -15,7 +15,7 @@ if (isset($_SESSION['email'])) {
     }
 } 
 
-if (isset($_SESSION['sell'])) {
+if (isset($_POST['sell'])) {
     $data = [
         'name' => $_POST['name'],
         'info' => $_POST['info'],
@@ -26,7 +26,8 @@ if (isset($_SESSION['sell'])) {
         'sellBID' => isset($_POST['sellBID']) ? 1 : 0,  
         'sellBIN' => isset($_POST['sellBIN']) ? 1 : 0,  
         'fromTime' => $_POST['fromTime'],
-        'toTime' => $_POST['toTime']
+        'toTime' => $_POST['toTime'],
+        'Itemcol' => $_POST['Itemcol']
     ];
     $unControleur->addItem($_SESSION['email'], $data);
 }
@@ -82,6 +83,9 @@ if (isset($_SESSION['sell'])) {
 
             <label for="toTime">To:</label>
             <input type="datetime-local" id="toTime" name="toTime">
+
+            <label for="Itemcol">Itemcol:</label>
+            <input type="text" id="Itemcol" name="Itemcol">
 
             <input name="sell" type="submit" value="Submit">
         </form>
