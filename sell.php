@@ -6,30 +6,40 @@ require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php")
 $unControleur = new Controleur ();
 
 $user = false;
+$errors = []; // to store error messages
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $user = $unControleur->selectWhereUser($email);
     if($user === false){
-        echo "No user found with email: " . $email;
-        die();
+        $errors[] = "No user found with email: " . $email;
     }
-} 
+}
 
 if (isset($_POST['sell'])) {
-    $data = [
-        'name' => $_POST['name'],
-        'info' => $_POST['info'],
-        'price' => $_POST['price'],
-        'delivery_price' => $_POST['delivery_price'],
-        'category' => $_POST['category'],
-        'sellBO' => isset($_POST['sellBO']) ? 1 : 0,  
-        'sellBID' => isset($_POST['sellBID']) ? 1 : 0,  
-        'sellBIN' => isset($_POST['sellBIN']) ? 1 : 0,  
-        'fromTime' => $_POST['fromTime'],
-        'toTime' => $_POST['toTime'],
-        'Itemcol' => $_POST['Itemcol']
-    ];
-    $unControleur->addItem($_SESSION['email'], $data);
+    // Check that all form fields have been filled out
+    $required_fields = ['name', 'info', 'price', 'delivery_price', 'category', 'fromTime', 'toTime', 'Itemcol'];
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $errors[] = 'The ' . $field . ' field is required.';
+        }
+    }
+
+    if(empty($errors)){ // If no errors occurred
+        $data = [
+            'name' => $_POST['name'],
+            'info' => $_POST['info'],
+            'price' => $_POST['price'],
+            'delivery_price' => $_POST['delivery_price'],
+            'category' => $_POST['category'],
+            'sellBO' => isset($_POST['sellBO']) ? 1 : 0,
+            'sellBID' => isset($_POST['sellBID']) ? 1 : 0,
+            'sellBIN' => isset($_POST['sellBIN']) ? 1 : 0,
+            'fromTime' => $_POST['fromTime'],
+            'toTime' => $_POST['toTime'],
+            'Itemcol' => $_POST['Itemcol']
+        ];
+        $unControleur->addItem($_SESSION['email'], $data);
+    }
 }
 ?>
 
@@ -89,6 +99,15 @@ if (isset($_POST['sell'])) {
 
             <input name="sell" type="submit" value="Submit">
         </form>
+        
+        <?php if (!empty($errors)): ?>
+            <div class="error-container">
+                <?php foreach ($errors as $error): ?>
+                    <p class="error"><?php echo $error; ?></p>
+                <?php endforeach; ?>
+            </div>
+         <?php endif; ?>
+
     </main>
 
         <?php else: ?>
