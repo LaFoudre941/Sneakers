@@ -17,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
 
     array_push($_SESSION['cart'], $item);
 
-    // Ajouter l'article au panier dans la base de données
-    $unControleur->addToCart($itemId);
 }
 ?>
 
@@ -105,11 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                         <p class="product-price"><?= $item['price'] ?></p>
                         <form method="POST" action="">
                             <input type="hidden" name="item_id" value="<?= $item['idItem'] ?>">
-                            <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                            <button type="submit" class="add-to-cart-button" name="action" value="addToCart">Add to Cart</button>
                         </form>
                     </div>
                 </div>
             <?php endforeach; ?>
+
         </div>
         </div>
 
@@ -123,26 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
         </div>
         
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $(".add-to-cart-button").click(function(e) {
-                    e.preventDefault();
-                    var itemId = $(this).prev().val();
-
-                    $.ajax({
-                        url: '',
-                        method: 'POST',
-                        data: {
-                            item_id: itemId
-                        },
-                        success: function(response) {
-                            alert("Item added to cart!");
-                        }
-                    });
-                });
-            });
-        </script>
+        
         
     </body>
 </html>

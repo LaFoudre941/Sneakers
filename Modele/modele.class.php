@@ -1,7 +1,7 @@
 <?php
 class Modele 
 {
-    private $unPdo ; 
+    protected $unPdo ; 
 
     public function __construct ()
     {
@@ -15,6 +15,10 @@ class Modele
             echo "<br/> Erreur de connexion à la base de données !";
         }
         
+    }
+
+    public function getPdo() {
+    return $this->unPdo;
     }
 
 /***************************************** Requete SQL **************************************************************/
@@ -149,30 +153,7 @@ public function getUserByEmail($email) {
 
 /***************************************  CART *********************************/
 
-public function addToCart($userEmail, $itemId, $sellerEmail, $quantity = 1) {
-    if ($this->unPdo != null) {
-        $requete = "INSERT INTO card (User_email, Item_idItem, Item_User_email_seller, quantity) 
-                    VALUES (:user_email, :item_id, :seller_email, :quantity)
-                    ON DUPLICATE KEY UPDATE quantity = quantity + :quantity;";
-        $donnees = array(
-            ":user_email" => $userEmail,
-            ":item_id" => $itemId,
-            ":seller_email" => $sellerEmail,
-            ":quantity" => $quantity
-        );
-        try {
-            $insert = $this->unPdo->prepare($requete);
-            $insert->execute($donnees);
-            return true;
-        } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    } else {
-        echo "PDO is not defined.";
-        return false;
-    }
-}
+
 
 
     // Retirer un article du panier
@@ -218,5 +199,13 @@ public function addToCart($userEmail, $itemId, $sellerEmail, $quantity = 1) {
             SET total = (SELECT SUM(total) FROM cart)
         ");
         $stmt->execute();
+    }
+
+    public function addItemToCard($itemId, $userEmail)
+    {
+    $query = "INSERT INTO Card (User_email, Item_idItem, Item_User_email_seller) VALUES (?, ?, ?)";
+    $stmt = $this->unPdo->prepare($query);
+    $stmt->execute([$userEmail, $itemId, $userEmail]);
+    // Vous pouvez également ajouter des vérifications d'erreur et des messages de réussite ici
     }
 }

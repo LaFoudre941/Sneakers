@@ -77,7 +77,12 @@ if (isset($_POST['sell'])) {
             <input type="number" id="delivery_price" name="delivery_price">
 
             <label for="category">Category:</label>
-            <input type="text" id="category" name="category">
+            <select type="text" id="category" name="category" style="width:100%;" >
+                <option value="Running Sneakers">Running Sneakers</option>
+                <option value="BasketBall Sneakers">BasketBall Sneakers</option>
+                <option value="Luxury Sneakers">Luxury Sneakers</option>
+                <option value="Skateboarding Sneakers">Skateboarding Sneakers</option>
+            </select>
 
             <label for="sellBO">Sell by Offer:</label>
             <input type="checkbox" id="sellBO" name="sellBO" value="1">

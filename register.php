@@ -23,23 +23,9 @@ ini_set('display_errors', 1);
     <title>Register</title>
 </head>
 <body>
-    <div id="main-content">
-        <nav>
-            <ul>
-                <li><a href="index.php"><img src="./Vue/images/logo.png" alt="logo"></a></li>
-                <li><a href="buying.php">Buying</a></li>
-                <li><a href="youraccount.php">Your account</a></li>
-                <li><a href="categories.php">Categories</a></li>
-                <li><a href="sell.php">Sell</a></li>
-                <li><a href="cart.php">Cart</a></li>
-                <form action="/search" method="GET">
-                    <input style="width: 250px;" type="text" name="q" placeholder="Search on YOUR MARKET">
-                </form>
-                <li><a href="register.php" id="register-button">REGISTER</a></li>
-                <li><a  href="connexion.php" id="login-button">LOG IN</a></li>
-            </ul>
-        </nav>
-    </div>
+    <?php
+    require_once("vue/navbar.php");
+    ?>
 
 
 <div class="register-form">
@@ -58,7 +44,11 @@ ini_set('display_errors', 1);
         <label for="mdp">Password:</label><br>
         <input type="password" id="mdp" name="mdp" placeholder="Password"><br>
         <label for="whoAmI">Who am I:</label><br>
-        <input type="text" id="whoAmI" name="whoAmI" placeholder="Tell us about yourself"><br>
+        <select type="text" id="whoAmI" name="whoAmI" style="width:100%;" >
+            <option value="seller">seller</option>
+            <option value="buyer">buyer</option>
+        </select>
+        <br><br><br>
         <label for="adresse">Address:</label><br>
         <input type="text" id="adresse" name="adresse" placeholder="Enter your address"><br>
         <label for="city">City:</label><br>
