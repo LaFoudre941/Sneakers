@@ -6,6 +6,24 @@ session_start();
     require_once("./Controler/controler.class.php");
 $unControleur = new Controleur();
 
+
+$user = $unControleur->selectAllUsers();
+
+
+if (isset($_POST['delete'])) {
+        $unControleur->deleteUser($_POST["idItem"]);
+    }
+   
+if (isset($_POST['edit'])) {
+        $data = array(
+            "email" => $_POST["email"],
+            "name" => $_POST["name"],
+            "firstname" => $_POST["firstname"],
+        );
+        $unControleur->updateUser($_POST["idItem"], $data);
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -42,26 +60,36 @@ require_once("vue/navbar.php");
                     <th>Email</th>
                     <th>Name</th>
                     <th>First Name</th>
-                    <th>Birth Date</th>
                     <!-- Les autres titres de colonnes... -->
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user): ?>
+                <?php foreach ($users as $users): ?>
                 <tr>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['name']; ?></td>
-                    <td><?php echo $user['firstname']; ?></td>
-                    <td><?php echo $user['date_naissance']; ?></td>
+                    <form method="post">
+
+                    <td><?php echo $users['email']; ?> <br> <input type="text" name="email" value="<?php echo $users['email']; ?>"></td>
+
+                    <td><?php echo $users['name']; ?> <br> <input type="text" name="name" value="<?php echo $users['name']; ?>"></td>
+                    <td><?php echo $users['firstname']; ?> <br> <input type="text" name="firstname" value="<?php echo $users['firstname']; ?>"> </td>
                     <!-- Les autres données... -->
                     <td>
-                        <a href="edit_user.php?email=<?php echo $user['email']; ?>">Edit</a> | 
-                        <a href="delete_user.php?email=<?php echo $user['email']; ?>">Delete</a>
+                    
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="idItem" value="<?php echo $users['email']; ?>">
+                        <input name ="edit" class="item-action" type="submit" value="Modifier">
+                    </form>
+                    <form method="post">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="idItem" value="<?php echo $users['email']; ?>">
+                        <input name ="delete" class="item-action" type="submit" value="Supprimer">
+                    </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
+            
         </table>
 
 

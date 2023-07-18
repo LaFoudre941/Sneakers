@@ -83,6 +83,21 @@ public function updateItem($id, $data) {
     $select->execute($donnees);
 }
 
+
+public function deleteUser($id) {
+        $requete = "DELETE FROM User WHERE email = :id";
+        $donnees = array(":id" => $id);
+        $select = $this->unPdo->prepare($requete);
+        $select->execute($donnees);
+    }
+
+public function updateUser($id, $data) {
+    $requete = "UPDATE User SET email=:email, name=:name, firstname=:firstname WHERE email = :id";
+    $donnees = array(":id" => $id, ":email" => $data['email'], ":name" => $data['name'], ":firstname" => $data['firstname']);
+    $select = $this->unPdo->prepare($requete);
+    $select->execute($donnees);
+    }
+
 public function addItem($email, $data) {
     if ($this->unPdo != null) {
         $requete = "INSERT INTO Item (User_email_seller, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol) VALUES (:email, :name, :sellBO, :sellBID, :sellBIN, :category, :info, :delivery_price, :price, :fromTime, :toTime, :Itemcol);";

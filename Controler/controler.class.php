@@ -51,6 +51,16 @@ class Controleur {
         return $this->unModele->addItem($email, $data);
     }
 
+/***************************************  Gestion des Users *********************************/
+
+    public function deleteUser($id) {
+        $this->unModele->deleteUser($id);
+    }
+
+    public function updateUser($id, $data) {
+        $this->unModele->updateUser($id, $data);
+    }
+
     /***************************************  Register User *********************************/
 
     // Fonction pour nettoyer les entrées de l'utilisateur
@@ -154,8 +164,6 @@ class Controleur {
 
     public function selectAllUsers ()
     {
-        // Ici vous devriez avoir une méthode dans votre classe Modèle pour effectuer cette requête SQL.
-        // Je suppose que cette méthode est nommée 'selectAll'.
         $resultat = $this->unModele->selectAll("User");
         return $resultat;
     }
@@ -166,8 +174,6 @@ class Controleur {
 
     public function selectAllItems ()
     {
-        // Ici vous devriez avoir une méthode dans votre classe Modèle pour effectuer cette requête SQL.
-        // Je suppose que cette méthode est nommée 'selectAll'.
         $resultat = $this->unModele->selectAll("Item");
         return $resultat;
     }
