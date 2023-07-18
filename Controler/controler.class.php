@@ -148,4 +148,28 @@ class Controleur {
         // ...
     }
 
+    /***************************************  Select tois les user *********************************/
+
+
+
+    public function selectAllUsers ()
+    {
+        // Ici vous devriez avoir une méthode dans votre classe Modèle pour effectuer cette requête SQL.
+        // Je suppose que cette méthode est nommée 'selectAll'.
+        $resultat = $this->unModele->selectAll("User");
+        return $resultat;
+    }
+
+
+
+    /***************************************  Select tois les items *********************************/
+
+    public function selectAllItems ()
+    {
+        // Ici vous devriez avoir une méthode dans votre classe Modèle pour effectuer cette requête SQL.
+        // Je suppose que cette méthode est nommée 'selectAll'.
+        $resultat = $this->unModele->selectAll("Item");
+        return $resultat;
+    }
+
 }
