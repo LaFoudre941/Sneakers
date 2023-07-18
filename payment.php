@@ -36,7 +36,7 @@
             } elseif (strlen($cc_cvv) !== 3 || !is_numeric($cc_cvv)) {
                 echo "CVV invalide. Veuillez entrer les 3 chiffres au dos de votre carte.";
             } else {
-                // Les données de paiement sont valides, implémentez la logique de paiement ici
+                // Les données de paiement sont valides
             }
         }
     }
