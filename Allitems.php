@@ -6,6 +6,27 @@ session_start();
 require_once("/Applications/MAMP/htdocs/Sneakers/Controler/controler.class.php");
 $unControleur = new Controleur();
 
+$user = $unControleur->selectAllUsers();
+
+
+if (isset($_POST['delete'])) {
+        $unControleur->deleteItem($_POST["idItem"]);
+    }
+   
+if (isset($_POST['edit'])) {
+        $data = array(
+            "name" => $_POST["name"],
+            "category" => $_POST["category"],
+            "price" => $_POST["price"],
+        );
+        $unControleur->updateItem($_POST["idItem"], $data);
+    }
+
+$items = [];
+if ($user) {
+    $items = $unControleur->getItemsEmail($email);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -49,13 +70,25 @@ require_once("vue/navbar.php");
             <tbody>
                 <?php foreach ($items as $items): ?>
                 <tr>
-                    <td><?php echo $items['name']; ?></td>
-                    <td><?php echo $items['category']; ?></td>
-                    <td><?php echo $items['price']; ?></td>
+                    <form method="post">
+                    <td><?php echo $items['name']; ?> <br> <input type="text" name="name" value="new name"></td>
+                    
+                    <td><?php echo $items['category']; ?> <br> <input type="text" name="category" value="new Category"></td>
+                    
+                    <td><?php echo $items['price']; ?> <br> <input type="text" name="price" value="new price"></td>
+                    
                     <!-- Les autres données... -->
                     <td>
-                        <a href="edit_user.php?email=<?php echo $items['email']; ?>">Edit</a> | 
-                        <a href="delete_user.php?email=<?php echo $items['email']; ?>">Delete</a>
+                    
+                        <input type="hidden" name="action" value="update">
+                        <input name ="edit" class="item-action" type="submit" value="Modifier">
+                    </form>
+                    <form method="post">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="idItem" value="<?php echo $item['idItem']; ?>">
+                        <input name ="delete" class="item-action" type="submit" value="Supprimer">
+                    </form>
+
                     </td>
                 </tr>
                 <?php endforeach; ?>
