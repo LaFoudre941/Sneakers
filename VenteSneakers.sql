@@ -130,6 +130,31 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Card` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `VenteSneakers`.`Chat`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Chat` (
+  `idChat` INT NOT NULL AUTO_INCREMENT,
+  `Item_idItem` INT NOT NULL,
+  `User_email_seller` VARCHAR(100) NOT NULL,
+  `User_email_buyer` VARCHAR(100) NOT NULL,
+  `message` TEXT NOT NULL,
+  `sendDate` DATETIME NOT NULL,
+  PRIMARY KEY (`idChat`),
+  INDEX `fk_Chat_Item_idx` (`Item_idItem`, `User_email_seller`),
+  CONSTRAINT `fk_Chat_Item`
+    FOREIGN KEY (`Item_idItem`, `User_email_seller`)
+    REFERENCES `VenteSneakers`.`Item` (`idItem`, `User_email_seller`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  INDEX `fk_Chat_User_idx` (`User_email_buyer`),
+  CONSTRAINT `fk_Chat_User`
+    FOREIGN KEY (`User_email_buyer`)
+    REFERENCES `VenteSneakers`.`User` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
