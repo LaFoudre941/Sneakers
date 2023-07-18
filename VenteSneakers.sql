@@ -134,32 +134,18 @@ ENGINE = InnoDB;
 -- Table `VenteSneakers`.`Chat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Chat` (
-  `idChat` INT NOT NULL AUTO_INCREMENT,
-  `Item_idItem` INT NOT NULL,
-  `User_email_seller` VARCHAR(100) NOT NULL,
-  `User_email_buyer` VARCHAR(100) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `User_email` VARCHAR(45) NOT NULL,
   `message` TEXT NOT NULL,
-  `sendDate` DATETIME NOT NULL,
-  PRIMARY KEY (`idChat`),
-  INDEX `fk_Chat_Item_idx` (`Item_idItem`, `User_email_seller`),
-  CONSTRAINT `fk_Chat_Item`
-    FOREIGN KEY (`Item_idItem`, `User_email_seller`)
-    REFERENCES `VenteSneakers`.`Item` (`idItem`, `User_email_seller`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  INDEX `fk_Chat_User_idx` (`User_email_buyer`),
-  CONSTRAINT `fk_Chat_User`
-    FOREIGN KEY (`User_email_buyer`)
-    REFERENCES `VenteSneakers`.`User` (`email`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+INSERT INTO User (email, name, firstname, date_naissance, mdp, whoAmI, adresse, city, postal_code, country, phone)
+VALUES ('andrekhella@gmail.com', 'khella', 'andre', '1990-01-01', '$2y$10$EXkPEf2IpUOZpcj3R5.EWuIfoPML5kARcnohMUxaR841xIZKSXpHa', 'user', '123 rue Principale', 'Ville', '12345', 'Pays', '1234567890');
 
 INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (1, 'Nike Air Max 90', 1, 0, 0, 'Sneakers', 'Chaussures de sport', 5.0, 150.0, '2023-07-08 15:58:09.000000', '2023-07-10 12:00:00', NULL, 'andrekhella@gmail.com');
 INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (2, 'Adidas Stan Smith', 0, 1, 0, 'Sneakers', 'Chaussures décontractées', 3.0, 100.0, '2023-07-09 09:30:00', '2023-07-12 18:00:00', NULL, 'andrekhella@gmail.com');
