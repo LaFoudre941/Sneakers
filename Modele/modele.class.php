@@ -139,6 +139,8 @@ public function registerUser($email, $name, $firstname, $birthdate, $password, $
         return false;
     }
 }
+
+
 /***************************************  Your Account *********************************/
 public function getUserByEmail($email) {
     try {
@@ -152,9 +154,6 @@ public function getUserByEmail($email) {
 }
 
 /***************************************  CART *********************************/
-
-
-
 
     // Retirer un article du panier
     public function removeFromCart($itemId) {
@@ -179,6 +178,8 @@ public function getUserByEmail($email) {
         // Mettre à jour le total du panier après avoir changé la quantité d'un article
         $this->updateCartTotal();
     }
+
+
 
     // Mettre à jour le prix total de l'article
     private function updateItemTotal($itemId) {
@@ -207,5 +208,15 @@ public function getUserByEmail($email) {
     $stmt = $this->unPdo->prepare($query);
     $stmt->execute([$userEmail, $itemId, $userEmail]);
     // Vous pouvez également ajouter des vérifications d'erreur et des messages de réussite ici
+    }
+
+
+/***************************************  Affiche tous *********************************/
+
+    public function selectAll($table)
+    {
+        $requete = "select * from " . $table . ";";
+        $resultat = $this->unPdo->query($requete);
+        return $resultat->fetchAll();
     }
 }
