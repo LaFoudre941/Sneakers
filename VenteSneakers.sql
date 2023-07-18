@@ -160,9 +160,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO User (email, name, firstname, date_naissance, mdp, whoAmI, adresse, city, postal_code, country, phone)
-VALUES ('andrekhella@gmail.com', 'khella', 'andre', '1990-01-01', '123456', 'user', '123 rue Principale', 'Ville', '12345', 'Pays', '1234567890');
-
 
 INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (1, 'Nike Air Max 90', 1, 0, 0, 'Sneakers', 'Chaussures de sport', 5.0, 150.0, '2023-07-08 15:58:09.000000', '2023-07-10 12:00:00', NULL, 'andrekhella@gmail.com');
 INSERT INTO Item (idItem, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, User_email_seller) VALUES (2, 'Adidas Stan Smith', 0, 1, 0, 'Sneakers', 'Chaussures décontractées', 3.0, 100.0, '2023-07-09 09:30:00', '2023-07-12 18:00:00', NULL, 'andrekhella@gmail.com');
