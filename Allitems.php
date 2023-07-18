@@ -69,11 +69,11 @@ require_once("vue/navbar.php");
                 <tr>
                     <form method="post">
 
-                    <td><?php echo $items['name']; ?> <br> <input type="text" name="name" value="new name"></td>
+                    <td><?php echo $items['name']; ?> <br> <input type="text" name="name" value="<?php echo $items['name']; ?>"></td>
                     
-                    <td><?php echo $items['category']; ?> <br> <input type="text" name="category" value="new Category"></td>
+                    <td><?php echo $items['category']; ?> <br> <input type="text" name="category" value="<?php echo $items['category']; ?>"></td>
                     
-                    <td><?php echo $items['price']; ?> <br> <input type="text" name="price" value="new price"></td>
+                    <td><?php echo $items['price']; ?> <br> <input type="text" name="price" value="<?php echo $items['price']; ?>"></td>
                     
                     <!-- Les autres données... -->
                     <td>
