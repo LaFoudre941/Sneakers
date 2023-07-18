@@ -22,10 +22,7 @@ if (isset($_POST['edit'])) {
         $unControleur->updateItem($_POST["idItem"], $data);
     }
 
-$items = [];
-if ($user) {
-    $items = $unControleur->getItemsEmail($email);
-}
+
 
 ?>
 
@@ -51,7 +48,7 @@ require_once("vue/navbar.php");
         // Vérifiez d'abord si l'utilisateur est connecté et a le droit de voir cette page.
         if ($user && $user['whoAmI'] == 'admin'):
 
-        // Récupérez tous les utilisateurs
+        // Récupérez tous les items
         $items = $unControleur->selectAllItems();
         ?>
 
@@ -71,6 +68,7 @@ require_once("vue/navbar.php");
                 <?php foreach ($items as $items): ?>
                 <tr>
                     <form method="post">
+
                     <td><?php echo $items['name']; ?> <br> <input type="text" name="name" value="new name"></td>
                     
                     <td><?php echo $items['category']; ?> <br> <input type="text" name="category" value="new Category"></td>
@@ -81,11 +79,12 @@ require_once("vue/navbar.php");
                     <td>
                     
                         <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="idItem" value="<?php echo $items['idItem']; ?>">
                         <input name ="edit" class="item-action" type="submit" value="Modifier">
                     </form>
                     <form method="post">
                         <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="idItem" value="<?php echo $item['idItem']; ?>">
+                        <input type="hidden" name="idItem" value="<?php echo $items['idItem']; ?>">
                         <input name ="delete" class="item-action" type="submit" value="Supprimer">
                     </form>
 
