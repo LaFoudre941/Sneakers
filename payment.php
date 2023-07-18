@@ -70,7 +70,7 @@
                         <option value="" selected disabled>Month</option>
                         <?php
                             for ($i = 1; $i <= 12; $i++) {
-                                $month = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                $month = ($i < 10) ? '0' . $i : $i;
                                 echo "<option value='$month'>$month</option>";
                             }
                         ?>
