@@ -135,10 +135,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Chat` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `User_email` VARCHAR(45) NOT NULL,
+  `sender` VARCHAR(100) NOT NULL,
+  `receiver` VARCHAR(100) NOT NULL,
   `message` TEXT NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`sender`) REFERENCES `VenteSneakers`.`User`(`email`),
+  FOREIGN KEY (`receiver`) REFERENCES `VenteSneakers`.`User`(`email`)
 ) ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

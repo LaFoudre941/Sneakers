@@ -44,6 +44,16 @@
                 <label for="message">Message :</label>
                 <textarea name="message" id="message" class="form-control" required></textarea>
             </div>
+            <label for="seller">Choose a seller:</label>
+            <select name="seller" id="seller">
+                <?php
+                // Fetch all sellers from database
+                $sellers = $bdd->query('SELECT email FROM User WHERE whoAmI = "seller"');
+                while($seller = $sellers->fetch()) {
+                ?>
+                    <option value="<?= $seller['email'] ?>"><?= $seller['email'] ?></option>
+                <?php } ?>
+            </select>
             <button type="submit" name="valider" class="btn btn-primary">Envoyer</button>
         </form>
 
