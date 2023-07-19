@@ -40,16 +40,18 @@ if (isset($_POST['sell'])) {
         ];
         
         // Upload and store the image in the database
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) { //Valeur: 0; Il n'y a aucune erreur, le fichier téléchargé avec succès.
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $image_tmp = $_FILES['image']['tmp_name'];
             $image_data = file_get_contents($image_tmp);
-            $image_type = $_FILES['image']['type'];
-            
-        
-            if ($image_type === 'image/jpeg' || $image_type === 'image/png') {
-                $data['image'] = base64_encode($image_data);
+            if ($image_data === FALSE) {
+                $errors[] = 'Failed to read the image file.';
             } else {
-                $errors[] = 'Invalid image format. Only JPEG and PNG are allowed.';
+                $image_type = $_FILES['image']['type'];
+                if ($image_type === 'image/jpeg' || $image_type === 'image/png') {
+                    $data['image'] = base64_encode($image_data);
+                } else {
+                    $errors[] = 'Invalid image format. Only JPEG and PNG are allowed.';
+                }
             }
         }
 
