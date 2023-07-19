@@ -10,11 +10,21 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
+// Vérifier si l'utilisateur est un vendeur
+$userQuery = $bdd->prepare('SELECT whoAmI FROM User WHERE email = ?');
+$userQuery->execute(array($email));
+$user = $userQuery->fetch();
+
+if ($user['whoAmI'] !== 'seller') {
+    echo "Vous n'avez pas les droits d'accès à cette page.";
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['valider'])) {
-        if (!empty($_POST['message']) && !empty($_POST['seller'])) {
+        if (!empty($_POST['message']) && !empty($_POST['receiver'])) {
             $message = nl2br(htmlspecialchars($_POST['message']));
-            $receiver = $_POST['seller'];
+            $receiver = $_POST['receiver'];
 
             $insertMessage = $bdd->prepare("INSERT INTO Chat (message, sender, receiver) VALUES (?, ?, ?)");
             $insertMessage->execute(array($message, $email, $receiver));
@@ -24,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Récupérer la liste des vendeurs
-$sellersQuery = $bdd->prepare('SELECT email, name FROM User WHERE whoAmI = ?');
-$sellersQuery->execute(array('seller'));
-$sellers = $sellersQuery->fetchAll();
+// Récupérer la liste des acheteurs
+$buyersQuery = $bdd->prepare('SELECT email, name FROM User WHERE whoAmI = ?');
+$buyersQuery->execute(array('buyer'));
+$buyers = $buyersQuery->fetchAll();
 
 ?>
 
@@ -50,12 +60,12 @@ $sellers = $sellersQuery->fetchAll();
                 <textarea name="message" id="message" class="form-control" required></textarea>
             </div>
             <div class="form-group">
-                <label for="seller">Vendeur :</label>
-                <select name="seller" id="seller" class="form-control" required>
-                    <option value="">Choisir un vendeur</option>
+                <label for="receiver">Acheteur :</label>
+                <select name="receiver" id="receiver" class="form-control" required>
+                    <option value="">Choisir un acheteur</option>
                     <?php
-                    foreach ($sellers as $seller) {
-                        echo "<option value=\"" . $seller['email'] . "\">" . $seller['name'] . "</option>";
+                    foreach ($buyers as $buyer) {
+                        echo "<option value=\"" . $buyer['email'] . "\">" . $buyer['name'] . "</option>";
                     }
                     ?>
                 </select>
@@ -66,14 +76,14 @@ $sellers = $sellersQuery->fetchAll();
 
         <section id="messages">
             <?php
-            if (isset($_POST['seller'])) {
-                $seller_email = $_POST['seller'];
+            if (isset($_POST['receiver'])) {
+                $receiver_email = $_POST['receiver'];
             } else {
-                $seller_email = '';
+                $receiver_email = '';
             }
 
             $messages = $bdd->prepare('SELECT * FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY id');
-            $messages->execute(array($email, $seller_email, $seller_email, $email));
+            $messages->execute(array($email, $receiver_email, $receiver_email, $email));
 
             while ($message = $messages->fetch()) {
                 if ($message['sender'] === $email) {
