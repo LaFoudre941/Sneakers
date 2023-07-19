@@ -21,7 +21,8 @@
             <li><a href="bestoffer.php">Best Offer</a></li>';
             } elseif ($user['whoAmI'] == 'seller') {
             echo 
-            '<li><a href="sell.php">Sell</a></li>';
+            '<li><a href="sell.php">Sell</a></li>
+            <li><a href="chat-sell.php">My mailbox</a></li>';
             } 
             }
             ?>

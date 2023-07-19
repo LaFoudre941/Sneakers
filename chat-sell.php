@@ -33,8 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['supprimer_chat'])) {
         $receiver_email = isset($_POST['receiver']) ? $_POST['receiver'] : '';
-        $deleteMessages = $bdd->prepare('DELETE FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)');
-        $deleteMessages->execute(array($email, $receiver_email, $receiver_email, $email));
+        
+        if (!empty($receiver_email)) {
+            $deleteMessages = $bdd->prepare('DELETE FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)');
+            $deleteMessages->execute(array($email, $receiver_email, $receiver_email, $email));
+        } else {
+            $deleteAllMessages = $bdd->prepare('DELETE FROM Chat WHERE sender = ? OR receiver = ?');
+            $deleteAllMessages->execute(array($email, $email));
+        }
     }
 }
 
@@ -51,6 +57,7 @@ $buyers = $buyersQuery->fetchAll();
     <title>Messagerie instantanée</title>
     <meta charset="utf-8">
     <link href="./Vue/CSS/chat.css" rel="stylesheet" />
+    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper">
@@ -62,7 +69,7 @@ $buyers = $buyersQuery->fetchAll();
             </div>
             <div class="form-group">
                 <label for="receiver">Acheteur :</label>
-                <select name="receiver" id="receiver" class="form-control" required>
+                <select name="receiver" id="receiver" class="form-control">
                     <option value="">Choisir un acheteur</option>
                     <?php
                     foreach ($buyers as $buyer) {
@@ -107,7 +114,6 @@ $buyers = $buyersQuery->fetchAll();
     </div>
 
     <script>
-        setInterval(load_messages, 1000);
 
         function load_messages() {
             $('#messages').load('loadMessages.php');
