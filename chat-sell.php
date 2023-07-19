@@ -60,6 +60,7 @@ $buyers = $buyersQuery->fetchAll();
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
 </head>
 <body>
+    
     <div class="wrapper">
         <h1>Instant Messaging</h1>
         <form method="POST" action="" align="center">

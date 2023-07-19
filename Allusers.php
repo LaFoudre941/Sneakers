@@ -11,7 +11,7 @@ $user = $unControleur->selectAllUsers();
 
 
 if (isset($_POST['delete'])) {
-        $unControleur->deleteUser($_POST["idItem"]);
+        $unControleur->deleteUser($_POST["email"]);
     }
    
 if (isset($_POST['edit'])) {
@@ -20,7 +20,7 @@ if (isset($_POST['edit'])) {
             "name" => $_POST["name"],
             "firstname" => $_POST["firstname"],
         );
-        $unControleur->updateUser($_POST["idItem"], $data);
+        $unControleur->updateUser($_POST["email"], $data);
     }
 
 
@@ -77,12 +77,12 @@ require_once("vue/navbar.php");
                     <td>
                     
                         <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="idItem" value="<?php echo $users['email']; ?>">
+                        <input type="hidden" name="email" value="<?php echo $users['email']; ?>">
                         <input name ="edit" class="item-action" type="submit" value="Modifier">
                     </form>
                     <form method="post">
                         <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="idItem" value="<?php echo $users['email']; ?>">
+                        <input type="hidden" name="email" value="<?php echo $users['email']; ?>">
                         <input name ="delete" class="item-action" type="submit" value="Supprimer">
                     </form>
                     </td>

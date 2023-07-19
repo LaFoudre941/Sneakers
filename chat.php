@@ -47,11 +47,13 @@ $sellers = $sellersQuery->fetchAll();
     <title>Instant Messaging</title>
     <meta charset="utf-8">
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
-    <link href="./Vue/CSS/chat.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+    <?php
+require_once("vue/navbar.php");
+?>
     <div class="wrapper">
         <h1>Instant Messaging</h1>
         <form method="POST" action="" align="center">
