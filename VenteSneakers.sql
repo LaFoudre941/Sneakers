@@ -77,8 +77,6 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Item` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `VenteSneakers`.`Order`
 -- -----------------------------------------------------
@@ -177,6 +175,10 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+INSERT INTO User (email, name, firstname, date_naissance, mdp, whoAmI, adresse, city, postal_code, country, phone)
+VALUES ('admin@gmail.com', 'admin', 'Admin', '1990-01-01', '$2y$10$GbV.uNYSYn74NgqwFpJY0eQzCx3hhx53bEGl6NrUNJ2vDzPx1uita', 'admin', '123 Rue Principale', 'Ville Admin', '12345', 'Pays Admin', '1234567890');
+INSERT INTO User (email, name, firstname, date_naissance, mdp, whoAmI, adresse, city, postal_code, country, phone)
+VALUES ('buyer@gmail.com', 'buy', 'Buyer', '1990-01-01', '$2y$10$wNbsKEfst9mxqW5420TiguEUr/OZP9Gfqt.HIp4leJ8i4kDObeLaG', 'buyer', '456 Rue Secondaire', 'Ville Seller', '67890', 'Pays Seller', '9876543210');
 INSERT INTO User (email, name, firstname, date_naissance, mdp, whoAmI, adresse, city, postal_code, country, phone)
 VALUES ('andrekhella@gmail.com', 'khella', 'andre', '1990-01-01', '$2y$10$EXkPEf2IpUOZpcj3R5.EWuIfoPML5kARcnohMUxaR841xIZKSXpHa', 'seller', '123 rue Principale', 'Ville', '12345', 'Pays', '1234567890');
 
