@@ -98,29 +98,30 @@ public function updateUser($id, $data) {
     $select->execute($donnees);
     }
 
-public function addItem($email, $data) {
-    if ($this->unPdo != null) {
-        $requete = "INSERT INTO Item (User_email_seller, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol) VALUES (:email, :name, :sellBO, :sellBID, :sellBIN, :category, :info, :delivery_price, :price, :fromTime, :toTime, :Itemcol);";
-        $select = $this->unPdo->prepare($requete);
-        $select->execute([
-            ':email' => $email,
-            ':name' => $data['name'],
-            ':sellBO' => $data['sellBO'],
-            ':sellBID' => $data['sellBID'],
-            ':sellBIN' => $data['sellBIN'],
-            ':category' => $data['category'],
-            ':info' => $data['info'],
-            ':delivery_price' => $data['delivery_price'],
-            ':price' => $data['price'],
-            ':fromTime' => $data['fromTime'],
-            ':toTime' => $data['toTime'],
-            ':Itemcol' => $data['Itemcol']
-        ]);
-        return true;
-    } else {
-        return false;
+    public function addItem($email, $data) {
+        if ($this->unPdo != null) {
+            $requete = "INSERT INTO Item (User_email_seller, name, sellBO, sellBID, sellBIN, category, info, delivery_price, price, fromTime, toTime, Itemcol, image) VALUES (:email, :name, :sellBO, :sellBID, :sellBIN, :category, :info, :delivery_price, :price, :fromTime, :toTime, :Itemcol, :image);";
+            $select = $this->unPdo->prepare($requete);
+            $select->execute([
+                ':email' => $email,
+                ':name' => $data['name'],
+                ':sellBO' => $data['sellBO'],
+                ':sellBID' => $data['sellBID'],
+                ':sellBIN' => $data['sellBIN'],
+                ':category' => $data['category'],
+                ':info' => $data['info'],
+                ':delivery_price' => $data['delivery_price'],
+                ':price' => $data['price'],
+                ':fromTime' => $data['fromTime'],
+                ':toTime' => $data['toTime'],
+                ':Itemcol' => $data['Itemcol'],
+                ':image' => isset($data['image']) ? $data['image'] : null
+            ]);
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 
 
 /***************************************  Register User *********************************/
