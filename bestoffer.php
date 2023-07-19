@@ -8,15 +8,21 @@ require_once("./Controler/controler.class.php");
 $unControleur = new Controleur();
 $items = $unControleur->getItems();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
-    $itemId = $_POST['item_id'];
-    $item = $unControleur->getItemById($itemId);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['item_id']) && isset($_POST['offer_price'])) {
+        $itemId = $_POST['item_id'];
+        $offerPrice = $_POST['offer_price'];
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
+        if (!isset($_SESSION['email'])) {
+            // Redirigez l'utilisateur vers la page de connexion ou gérez le cas où l'utilisateur n'est pas connecté
+            header("Location: login.php");
+            exit;
+        }
+
+        $emailBuyer = $_SESSION['email'];
+
+        $unControleur->addOffer($emailBuyer, $itemId, $offerPrice);
     }
-
-    array_push($_SESSION['cart'], $item);
 }
 ?>
 
@@ -24,20 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="./Vue/CSS/buying.css" rel="stylesheet" />
+    <link href="./Vue/CSS/bestoffer.css" rel="stylesheet" />
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
     <title>Best Offer</title>
     <script>
         function showContactForm(seller) {
             // Code pour afficher le formulaire de contact avec le vendeur
-            alert("Contact form for seller: " + seller);
+            alert("Formulaire de contact pour le vendeur : " + seller);
         }
     </script>
 </head>
 <body>
-    <?php
-    require_once("vue/navbar.php");
-    ?>
+    <?php require_once("vue/navbar.php"); ?>
 
     <div class="div1">
         <div class="mainmenu">
@@ -111,8 +115,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                         </div>
                     </div>
                 </div>
+                <div class="make-offer">
+                    <form method="POST">
+                        <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+                        <input type="number" name="offer_price" min="0" placeholder="Your offer">
+                        <button type="submit">Make Offer</button>
+                    </form>
+                </div>
+                <div class="offers">
+                    <h4>Previous Offers:</h4>
+                    <?php
+                    $offers = [];
+                    if (isset($item['id'])) {
+                        $offers = $unControleur->getOffersForItem($item['id']);
+                    }
+                    
+                    if (!empty($offers)) {
+                        echo '<ul>';
+                        foreach ($offers as $offer) {
+                            echo '<li>Buyer: ' . $offer['User_email_buyer'] . ', Offer: ' . $offer['price'] . '</li>';
+                        }
+                        echo '</ul>';
+                    } else {
+                        echo '<p>No offers yet.</p>';
+                    }
+                    ?>
+                </div>
             <?php endforeach; ?>
-
         </div>
     </div>
 

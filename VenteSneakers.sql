@@ -143,6 +143,31 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Chat` (
   FOREIGN KEY (`receiver`) REFERENCES `VenteSneakers`.`User`(`email`)
 ) ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `VenteSneakers`.`Offer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Offer` (
+  `idOffer` INT NOT NULL AUTO_INCREMENT,
+  `amount` DOUBLE NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  `User_email` VARCHAR(100) NOT NULL,
+  `Item_idItem` INT NOT NULL,
+  PRIMARY KEY (`idOffer`),
+  INDEX `fk_Offer_User1_idx` (`User_email` ASC),
+  INDEX `fk_Offer_Item1_idx` (`Item_idItem` ASC),
+  CONSTRAINT `fk_Offer_User1`
+    FOREIGN KEY (`User_email`)
+    REFERENCES `VenteSneakers`.`User` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Offer_Item1`
+    FOREIGN KEY (`Item_idItem`)
+    REFERENCES `VenteSneakers`.`Item` (`idItem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

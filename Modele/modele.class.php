@@ -234,4 +234,82 @@ public function getUserByEmail($email) {
         $resultat = $this->unPdo->query($requete);
         return $resultat->fetchAll();
     }
+
+   /***************************************  Gestion des Offres *********************************/
+
+   public function addOffer($emailBuyer, $idItem, $price)
+   {
+       if ($this->unPdo != null) {
+           $requete = "INSERT INTO Offer (User_email_buyer, Item_idItem, price) VALUES (:emailBuyer, :idItem, :price);";
+           $select = $this->unPdo->prepare($requete);
+           try {
+               $select->execute([
+                   ':emailBuyer' => $emailBuyer,
+                   ':idItem' => $idItem,
+                   ':price' => $price
+               ]);
+               return true;
+           } catch(PDOException $e) {
+               error_log($e->getMessage());
+               return false;
+           }
+       } else {
+           return false;
+       }
+   }
+
+    public function getBestOffer($idItem)
+    {
+        if ($this->unPdo != null) {
+            $requete = "SELECT * FROM Offers WHERE Item_idItem = :idItem ORDER BY price DESC LIMIT 1;";
+            $select = $this->unPdo->prepare($requete);
+            try {
+                $select->execute(array(':idItem' => $idItem));
+                $offer = $select->fetch(PDO::FETCH_ASSOC);
+                return $offer;
+            } catch(PDOException $e) {
+                error_log($e->getMessage());
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function getOffersForItem($idItem)
+    {
+        if ($this->unPdo != null) {
+            $requete = "SELECT * FROM Offer WHERE Item_idItem = :idItem ORDER BY price DESC;";
+            $select = $this->unPdo->prepare($requete);
+            try {
+                $select->execute(array(':idItem' => $idItem));
+                $offers = $select->fetchAll(PDO::FETCH_ASSOC);
+                return $offers;
+            } catch(PDOException $e) {
+                error_log($e->getMessage());
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function deleteOffer($idOffer)
+    {
+        if ($this->unPdo != null) {
+            $requete = "DELETE FROM Offers WHERE idOffer = :idOffer;";
+            $select = $this->unPdo->prepare($requete);
+            try {
+                $select->execute(array(':idOffer' => $idOffer));
+                return true;
+            } catch(PDOException $e) {
+                error_log($e->getMessage());
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
+    
+    

@@ -1,0 +1,148 @@
+.div1 {
+    display: inline-flex;
+    width: 100em;
+  }
+  
+  .mainmenu {
+    background-color: #fff;
+    width: 40%;
+    position: relative;
+  }
+  
+  .mainmenu1 {
+    margin-left: 5%;
+    max-height: 1000%;
+  }
+  
+  .mainmenu1 h3 {
+    padding-top: 15%;
+    margin-bottom: 2%;
+  }
+  
+  .image1 {
+    margin-top: 0;
+    margin-bottom: 0.2%;
+    height: 300px;
+    width: 100%;
+    color: #ffffff;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .acceuilimg {
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 5%;
+    width: 48.2%;
+    height: 75%;
+    padding: 2%;
+  }
+  
+  .acceuilimg h3 {
+    margin-top: 2%;
+    font-family: 'Inter', sans-serif;
+    margin-left: 3%;
+  }
+  
+  .acceuilimg h2 {
+    font-size: 200%;
+    padding-top: 3%;
+    font-family: 'Inter', sans-serif;
+    margin-left: 3%;
+  }
+  
+  .acceuilimg p {
+    margin-top: 1%;
+    font-family: "Gill Sans", sans-serif;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  
+  .endmenu {
+    margin-bottom: 10%;
+  }
+  
+  hr {
+    width: 95%;
+    border-color: #fafafa;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2% 5%;
+    gap: 2%;
+  }
+  
+  .product-item {
+    flex: 1 0 21%;
+    margin: 1%;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .product-item:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .product-details {
+    padding: 15px;
+  }
+  
+  .product-title {
+    margin: 0;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    font-size: 90%;
+    margin-bottom: 15px;
+  }
+  
+  .contact-seller {
+    margin-bottom: 10px;
+  }
+  
+  .contact-button {
+    padding: 5px 10px;
+  }
+  
+  .make-offer {
+    margin-bottom: 10px;
+  }
+  
+  .offers {
+    margin-bottom: 10px;
+  }
+  
+  .offers h4 {
+    margin-bottom: 5px;
+  }
+  
+  .offers ul {
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .offers li {
+    margin-bottom: 5px;
+  }
+  
+  .footerp {
+    padding-top: 2%;
+    text-align: center;
+    color: #9fa19f;
+  }
+  

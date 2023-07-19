@@ -177,5 +177,39 @@ class Controleur {
         $resultat = $this->unModele->selectAll("Item");
         return $resultat;
     }
+     /***************************************  Gestion des Offers *********************************/
+       // Get all the offers for a specific item
+    public function getOffersForItem($itemId) {
+        $itemId = $this->cleanInput($itemId);
 
+        return $this->unModele->getOffersForItem($itemId);
+    }
+
+    // Get the best offer for a specific item
+    public function getBestOffer($itemId) {
+        
+        $itemId = $this->cleanInput($itemId);
+
+        return $this->unModele->getBestOffer($itemId);
+    }
+
+    // Add an offer
+    public function addOffer($emailBuyer, $itemId, $price) {
+        $emailBuyer = $this->cleanInput($emailBuyer);
+        $itemId = $this->cleanInput($itemId);
+        $price = $this->cleanInput($price);
+
+        return $this->unModele->addOffer($emailBuyer, $itemId, $price);
+    }
+
+    // Delete an offer
+    public function deleteOffer($idOffer) {
+        
+        $idOffer = $this->cleanInput($idOffer);
+
+        return $this->unModele->deleteOffer($idOffer);
+    }
+
+        
+    
 }
