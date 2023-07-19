@@ -117,32 +117,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="hidden" name="Item_idItem" value="<?= $item['idItem'] ?>">
                         <input type="number" name="offer_price" min="0" placeholder="Your offer">
                         <br><br>
-                        <button type="submit">Make Offer</button>
+                        <button name="bestoffer" type="submit">Make Offer</button>
+                        
                     </form>
                 </div>
                 <div class="offers">
                 <h4>Previous Offers:</h4>
-            <?php
-            $offers = [];
-            if (isset($item['item_id'])) {
-                $offers = $unControleur->getOffersForItem($item['item_id']);
-            }
-            
 
-            if (!empty($offers)) {
-                echo '<ul>';
-                foreach ($offers as $offer) {
-                    echo '<li>Buyer: ' . $offer['User_email'] . ', Offer: ' . $offer['amount'] . '</li>';
-                }
-                echo '</ul>';
-            } else {
-                echo '<p>No offers yet.</p>';
-            }
-            ?>
         </div>
                 </div>
                 
             <?php endforeach; ?>
+            <?php
+
+            if (isset($_POST['bestoffer'])) {
+            $data = array(
+                "offer_price" => $_POST["offer_price"],
+                "email" => $emailBuyer,
+                "Item_idItem" => $_POST["Item_idItem"],
+            );
+            $unControleur->updateBestoffer($data);
+            }
+            ?>
         </div>
     </div>
 
