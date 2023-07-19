@@ -282,7 +282,7 @@ public function getUserByEmail($email) {
 
     public function getOffersForItem($idItem)
     {
-        if ($this->unPdo != null) {
+        if ($this->unPdo != null) { 
             $requete = "SELECT * FROM Offer WHERE Item_idItem = :idItem ORDER BY amount DESC;";
             $select = $this->unPdo->prepare($requete);
             try {
@@ -313,6 +313,17 @@ public function getUserByEmail($email) {
         } else {
             return false;
         }
+    }
+
+    public function updateBestoffer($data) {
+        if ($this->unPdo != null) {
+           $requete = "INSERT INTO Bestoffer (price, User_email, Item_idItem) VALUES (:price, :emailuser, :idItem);";
+            $donnees = array(":price" => $data['offer_price'], ":emailuser" => $data['email'], ":idItem" => $data['Item_idItem']);
+           $select = $this->unPdo->prepare($requete);
+           $select->execute($donnees);
+           
+       }
+
     }
 }
     
