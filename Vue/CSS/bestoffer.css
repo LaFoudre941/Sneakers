@@ -146,3 +146,35 @@
     color: #9fa19f;
   }
   
+  .contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3a9fbf;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-button:hover {
+    background-color: #268ba3;
+  }
+  .make-offer button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .make-offer button:hover {
+    background-color: #45a049;
+  }

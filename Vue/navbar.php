@@ -17,7 +17,8 @@
             if ($user['whoAmI'] == 'buyer') {
             echo 
             '<li><a href="buying.php">Buying</a></li>
-            <li><a href="cart.php">Cart</a></li>';
+            <li><a href="cart.php">Cart</a></li>
+            <li><a href="bestoffer.php">Best Offer</a></li>';
             } elseif ($user['whoAmI'] == 'seller') {
             echo 
             '<li><a href="sell.php">Sell</a></li>';

@@ -55,6 +55,7 @@
                 <?php } ?>
             </select>
             <button type="submit" name="valider" class="btn btn-primary">Envoyer</button>
+            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
         </form>
 
         <section id="messages">

@@ -33,12 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="./Vue/CSS/bestoffer.css" rel="stylesheet" />
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
     <title>Best Offer</title>
-    <script>
-        function showContactForm(seller) {
-            // Code pour afficher le formulaire de contact avec le vendeur
-            alert("Formulaire de contact pour le vendeur : " + seller);
-        }
-    </script>
+    
 </head>
 <body>
     <?php require_once("vue/navbar.php"); ?>
@@ -111,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p class="product-description"><?= $item['info'] ?></p>
                         <p class="product-price"><?= $item['price'] ?></p>
                         <div class="contact-seller">
-                            <button class="contact-button" onclick="showContactForm('<?= $item['seller'] ?>')">Contact Seller</button>
+                            <a class="contact-button" href="chat.php">Contact Seller</a>
                         </div>
                     </div>
                 </div>
@@ -129,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (isset($item['id'])) {
                         $offers = $unControleur->getOffersForItem($item['id']);
                     }
-                    
+
                     if (!empty($offers)) {
                         echo '<ul>';
                         foreach ($offers as $offer) {
