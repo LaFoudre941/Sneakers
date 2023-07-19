@@ -69,14 +69,17 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Item` (
   `toTime` DATETIME NULL,
   `Itemcol` VARCHAR(45) NULL,
   `User_email_seller` VARCHAR(100) NOT NULL,
+  `image` LONGBLOB NULL,
   PRIMARY KEY (`idItem`, `User_email_seller`),
   INDEX `fk_Item_User1_idx` (`User_email_seller` ASC),
   CONSTRAINT `fk_Item_User1`
     FOREIGN KEY (`User_email_seller`)
     REFERENCES `VenteSneakers`.`User` (`email`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
+
 -- -----------------------------------------------------
 -- Table `VenteSneakers`.`Order`
 -- -----------------------------------------------------

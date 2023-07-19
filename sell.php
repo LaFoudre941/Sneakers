@@ -38,6 +38,21 @@ if (isset($_POST['sell'])) {
             'toTime' => $_POST['toTime'],
             'Itemcol' => $_POST['Itemcol']
         ];
+        
+        // Upload and store the image in the database
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) { //Valeur: 0; Il n'y a aucune erreur, le fichier téléchargé avec succès.
+            $image_tmp = $_FILES['image']['tmp_name'];
+            $image_data = file_get_contents($image_tmp);
+            $image_type = $_FILES['image']['type'];
+            
+        
+            if ($image_type === 'image/jpeg' || $image_type === 'image/png') {
+                $data['image'] = base64_encode($image_data);
+            } else {
+                $errors[] = 'Invalid image format. Only JPEG and PNG are allowed.';
+            }
+        }
+
         $unControleur->addItem($_SESSION['email'], $data);
     }
 }
@@ -57,77 +72,82 @@ if (isset($_POST['sell'])) {
 
     
 <?php
-            require_once("vue/navbar.php");
+require_once("vue/navbar.php");
 ?>
 
 <?php if ($user): ?>
 
-    <main class="sell-container">
+<main class="sell-container">
     <form action="" method="POST" enctype="multipart/form-data" class="sell-form">
-            <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name">
 
-            <label for="info">Product description:</label>
-            <textarea id="info" name="info"></textarea>
+        <label for="info">Product description:</label>
+        <textarea id="info" name="info"></textarea>
 
-            <label for="price">Product price:</label>
-            <input type="number" id="price" name="price">
+        <label for="price">Product price:</label>
+        <input type="number" id="price" name="price">
 
-            <label for="delivery_price">Delivery Price:</label>
-            <input type="number" id="delivery_price" name="delivery_price">
+        <label for="delivery_price">Delivery Price:</label>
+        <input type="number" id="delivery_price" name="delivery_price">
 
-            <label for="category">Category:</label>
-            <select type="text" id="category" name="category" style="width:100%;" >
-                <option value="Running Sneakers">Running Sneakers</option>
-                <option value="BasketBall Sneakers">BasketBall Sneakers</option>
-                <option value="Luxury Sneakers">Luxury Sneakers</option>
-                <option value="Skateboarding Sneakers">Skateboarding Sneakers</option>
-            </select>
+        <label for="category">Category:</label>
+        <select type="text" id="category" name="category" style="width:100%;">
+            <option value="Running Sneakers">Running Sneakers</option>
+            <option value="BasketBall Sneakers">BasketBall Sneakers</option>
+            <option value="Luxury Sneakers">Luxury Sneakers</option>
+            <option value="Skateboarding Sneakers">Skateboarding Sneakers</option>
+        </select>
 
-            <label for="sellBO">Sell by Offer:</label>
-            <input type="checkbox" id="sellBO" name="sellBO" value="1">
+        <label for="sellBO">Sell by Offer:</label>
+        <input type="checkbox" id="sellBO" name="sellBO" value="1">
 
-            <label for="sellBID">Sell by Bid:</label>
-            <input type="checkbox" id="sellBID" name="sellBID" value="1">
+        <label for="sellBID">Sell by Bid:</label>
+        <input type="checkbox" id="sellBID" name="sellBID" value="1">
 
-            <label for="sellBIN">Sell Buy It Now:</label>
-            <input type="checkbox" id="sellBIN" name="sellBIN" value="1">
+        <label for="sellBIN">Sell Buy It Now:</label>
+        <input type="checkbox" id="sellBIN" name="sellBIN" value="1">
 
-            <label for="fromTime">From:</label>
-            <input type="datetime-local" id="fromTime" name="fromTime">
+        <label for="fromTime">From:</label>
+        <input type="datetime-local" id="fromTime" name="fromTime">
 
-            <label for="toTime">To:</label>
-            <input type="datetime-local" id="toTime" name="toTime">
+        <label for="toTime">To:</label>
+        <input type="datetime-local" id="toTime" name="toTime">
 
-            <label for="Itemcol">Itemcol:</label>
-            <input type="text" id="Itemcol" name="Itemcol">
+        <label for="Itemcol">Itemcol:</label>
+        <input type="text" id="Itemcol" name="Itemcol">
 
-            <input name="sell" type="submit" value="Submit">
-        </form>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/jpeg, image/png">
+
+        <input name="sell" type="submit" value="Submit">
+    </form>
         
-        <?php if (!empty($errors)): ?>
-            <div class="error-container">
-                <?php foreach ($errors as $error): ?>
-                    <p class="error"><?php echo $error; ?></p>
-                <?php endforeach; ?>
-            </div>
-         <?php endif; ?>
+    <?php if (!empty($errors)): ?>
+        <div class="error-container">
+            <?php foreach ($errors as $error): ?>
+                <p class="error"><?php echo $error; ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
-    </main>
+</main>
 
-        <?php else: ?>
-            <div class="container">
-                <div class="account-info">
-                    <h1>Welcome</h1>
-                    <p class="youraccount">You are not logged in. Please <a href="connexion.php">log in</a> or <a href="register.php">register</a>.</p>
-                </div>
-            </div>
-        <?php endif; ?>
+<?php else: ?>
+    <div class="container">
+        <div class="account-info">
+            <h1>Welcome</h1>
+            <p class="youraccount">You are not logged in. Please <a href="connexion.php">log in</a> or <a href="register.php">register</a>.</p>
+        </div>
+    </div>
+<?php endif; ?>
 
 
-    <footer>
+<footer>
+    <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
+    Copyright <br>
+    © 2023 - YOURMARKET</p>
+</footer>
 
-        <p class="footerp">Author: Andre Khella and Ahmed Qejiou<br>
-        Copyright <br> © 2023 - YOURMARKET</p>
-
-    </footer>
+</body>
+</html>
