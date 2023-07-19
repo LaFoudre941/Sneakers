@@ -210,6 +210,11 @@ class Controleur {
         return $this->unModele->deleteOffer($idOffer);
     }
 
+
+
+    public function updateBestoffer($data) {
+        $this->unModele->updateBestoffer($data);
+    }
         
     
 }

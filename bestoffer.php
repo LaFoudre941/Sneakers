@@ -112,11 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a class="contact-button" href="chat.php">Contact Seller</a>
                         </div>
                     </div>
-                </div>
-                <div class="make-offer">
+                    <div class="make-offer">
                     <form method="POST">
                         <input type="hidden" name="Item_idItem" value="<?= $item['idItem'] ?>">
                         <input type="number" name="offer_price" min="0" placeholder="Your offer">
+                        <br><br>
                         <button type="submit">Make Offer</button>
                     </form>
                 </div>
@@ -140,6 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
         </div>
+                </div>
+                
             <?php endforeach; ?>
         </div>
     </div>
