@@ -35,9 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Récupérer les items associés à l'email du vendeur
 
-$bestofferv = [];
+$bestoffervs = [];
+
 if ($user) {
-    $bestofferv = $unControleur->getbestoffervEmail($email);
+    $temp = $unControleur->getbestoffervEmail($email);
+    // Assurez-vous que $temp est un tableau avant de l'affecter à $bestoffervs
+    if (is_array($temp)) {
+        $bestoffervs = $temp;
+    }
 }
 
 $bestoffer = [];
