@@ -340,7 +340,7 @@ public function getUserByEmail($email) {
 
     public function getbestoffervEmail($email) {
     if ($this->unPdo != null) {
-        $requete = "SELECT * FROM Bestoffer JOIN Item ON Bestoffer.Item_idItem = Item.idItem AND Bestoffer.Item_User_email_seller = Item.User_email_seller WHERE Item.User_email_seller = :email;";
+        $requete = "SELECT * FROM Bestoffer JOIN Item ON Bestoffer.Item_idItem = Item.idItem AND Bestoffer.User_email = Item.User_email_seller WHERE Item.User_email_seller = :email;";
         $select = $this->unPdo->prepare($requete);
         $select->execute(array(':email' => $email));
         $bestoffer = $select->fetchAll(PDO::FETCH_ASSOC);
@@ -348,7 +348,6 @@ public function getUserByEmail($email) {
     } else {
         return null;
     }
-
-}
+    }
 
 }
