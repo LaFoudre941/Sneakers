@@ -34,12 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Récupérer les items associés à l'email du vendeur
-$items = [];
+
+$bestofferv = [];
+if ($user) {
+    $bestofferv = $unControleur->getbestoffervEmail($email);
+}
+
 $bestoffer = [];
 if ($user) {
     $bestoffers = $unControleur->getbestofferEmail($email);
 }
 
+$items = [];
 if ($user) {
     $items = $unControleur->getItemsEmail($email);
 }
@@ -103,6 +109,15 @@ require_once("vue/navbar.php");
                         <input name ="edit" class="item-action" type="submit" value="Modifier">
                     </form>
                 </div>
+            <?php endforeach; ?>
+            <h2>Best Offers of Your Client</h2><br>
+
+            <?php foreach ($bestoffervs as $offerv): ?>
+
+                <p>Item Name: <?php echo $offerv['Item_idItem']; ?></p>
+                <p>Item Category: <?php echo $offerv['accepted']; ?></p>
+                <p>Price: <?php echo $offerv['price']; ?></p>
+
             <?php endforeach; ?>
 
             <?php elseif ($user['whoAmI'] === 'buyer'): ?>

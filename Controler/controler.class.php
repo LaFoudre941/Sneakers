@@ -220,5 +220,9 @@ class Controleur {
     public function getbestofferEmail($emailVendeur) {
         return $this->unModele->getbestofferEmail($emailVendeur);
     }
+
+    public function getbestoffervEmail($email) {
+        return $this->unModele->getbestoffervEmail($email);
+    }
     
 }
