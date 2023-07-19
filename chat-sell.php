@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Veuillez compléter tous les champs.";
         }
+    } elseif (isset($_POST['supprimer_chat'])) {
+        $receiver_email = isset($_POST['receiver']) ? $_POST['receiver'] : '';
+        $deleteMessages = $bdd->prepare('DELETE FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)');
+        $deleteMessages->execute(array($email, $receiver_email, $receiver_email, $email));
     }
 }
 
@@ -46,10 +50,7 @@ $buyers = $buyersQuery->fetchAll();
 <head>
     <title>Messagerie instantanée</title>
     <meta charset="utf-8">
-    <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
     <link href="./Vue/CSS/chat.css" rel="stylesheet" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -71,6 +72,7 @@ $buyers = $buyersQuery->fetchAll();
                 </select>
             </div>
             <button type="submit" name="valider" class="btn btn-primary">Envoyer</button>
+            <button type="submit" name="supprimer_chat" class="btn btn-danger">Supprimer le chat</button>
             <button type="reset" class="btn btn-secondary">Réinitialiser</button>
         </form>
 
@@ -78,26 +80,26 @@ $buyers = $buyersQuery->fetchAll();
             <?php
             if (isset($_POST['receiver'])) {
                 $receiver_email = $_POST['receiver'];
-            } else {
-                $receiver_email = '';
-            }
 
-            $messages = $bdd->prepare('SELECT * FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY id');
-            $messages->execute(array($email, $receiver_email, $receiver_email, $email));
+                $messages = $bdd->prepare('SELECT * FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY id');
+                $messages->execute(array($email, $receiver_email, $receiver_email, $email));
 
-            while ($message = $messages->fetch()) {
-                if ($message['sender'] === $email) {
-                    ?>
-                    <div class="message outgoing">
-                        <p><?= $message['message'] ?></p>
-                    </div>
-                    <?php
-                } else {
-                    ?>
-                    <div class="message incoming">
-                        <p><?= $message['message'] ?></p>
-                    </div>
-                    <?php
+                while ($message = $messages->fetch()) {
+                    if ($message['sender'] === $email) {
+                        ?>
+                        <div class="message outgoing">
+                            <p><?= $message['sender'] ?></p>
+                            <p><?= $message['message'] ?></p>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="message incoming">
+                            <p><?= $message['sender'] ?></p>
+                            <p><?= $message['message'] ?></p>
+                        </div>
+                        <?php
+                    }
                 }
             }
             ?>
