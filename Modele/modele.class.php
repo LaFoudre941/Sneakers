@@ -240,15 +240,19 @@ public function getUserByEmail($email) {
    public function addOffer($emailBuyer, $idItem, $price)
    {
        if ($this->unPdo != null) {
-           $requete = "INSERT INTO Offer (User_email_buyer, Item_idItem, price) VALUES (:emailBuyer, :idItem, :price);";
+           $requete = "INSERT INTO Offer (User_email, Item_idItem, amount) VALUES (:emailBuyer, :idItem, :price);";
            $select = $this->unPdo->prepare($requete);
            try {
-               $select->execute([
+               if ($select->execute([
                    ':emailBuyer' => $emailBuyer,
                    ':idItem' => $idItem,
                    ':price' => $price
-               ]);
-               return true;
+               ])) {
+                   return true;
+               } else {
+                   error_log("Failed to execute statement: " . print_r($select->errorInfo(), true));
+                   return false;
+               }
            } catch(PDOException $e) {
                error_log($e->getMessage());
                return false;
@@ -261,7 +265,7 @@ public function getUserByEmail($email) {
     public function getBestOffer($idItem)
     {
         if ($this->unPdo != null) {
-            $requete = "SELECT * FROM Offers WHERE Item_idItem = :idItem ORDER BY price DESC LIMIT 1;";
+            $requete = "SELECT * FROM Offer WHERE Item_idItem = :idItem ORDER BY amount DESC LIMIT 1;";
             $select = $this->unPdo->prepare($requete);
             try {
                 $select->execute(array(':idItem' => $idItem));
@@ -279,7 +283,7 @@ public function getUserByEmail($email) {
     public function getOffersForItem($idItem)
     {
         if ($this->unPdo != null) {
-            $requete = "SELECT * FROM Offer WHERE Item_idItem = :idItem ORDER BY price DESC;";
+            $requete = "SELECT * FROM Offer WHERE Item_idItem = :idItem ORDER BY amount DESC;";
             $select = $this->unPdo->prepare($requete);
             try {
                 $select->execute(array(':idItem' => $idItem));
@@ -297,7 +301,7 @@ public function getUserByEmail($email) {
     public function deleteOffer($idOffer)
     {
         if ($this->unPdo != null) {
-            $requete = "DELETE FROM Offers WHERE idOffer = :idOffer;";
+            $requete = "DELETE FROM Offer WHERE idOffer = :idOffer;";
             $select = $this->unPdo->prepare($requete);
             try {
                 $select->execute(array(':idOffer' => $idOffer));

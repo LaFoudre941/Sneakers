@@ -9,8 +9,9 @@ $unControleur = new Controleur();
 $items = $unControleur->getItems();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['item_id']) && isset($_POST['offer_price'])) {
-        $itemId = $_POST['item_id'];
+    var_dump($_POST);
+    if (isset($_POST['Item_idItem']) && isset($_POST['offer_price'])) {
+        $itemId = $_POST['Item_idItem'];
         $offerPrice = $_POST['offer_price'];
 
         if (!isset($_SESSION['email'])) {
@@ -21,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $emailBuyer = $_SESSION['email'];
 
-        $unControleur->addOffer($emailBuyer, $itemId, $offerPrice);
+        if(!$unControleur->addOffer($emailBuyer, $itemId, $offerPrice)) {
+            echo "Failed to add offer";
+        }
     }
 }
 ?>
@@ -112,30 +115,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="make-offer">
                     <form method="POST">
-                        <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+                        <input type="hidden" name="Item_idItem" value="<?= $item['idItem'] ?>">
                         <input type="number" name="offer_price" min="0" placeholder="Your offer">
                         <button type="submit">Make Offer</button>
                     </form>
                 </div>
                 <div class="offers">
-                    <h4>Previous Offers:</h4>
-                    <?php
-                    $offers = [];
-                    if (isset($item['id'])) {
-                        $offers = $unControleur->getOffersForItem($item['id']);
-                    }
+                <h4>Previous Offers:</h4>
+            <?php
+            $offers = [];
+            if (isset($item['item_id'])) {
+                $offers = $unControleur->getOffersForItem($item['item_id']);
+            }
+            
 
-                    if (!empty($offers)) {
-                        echo '<ul>';
-                        foreach ($offers as $offer) {
-                            echo '<li>Buyer: ' . $offer['User_email_buyer'] . ', Offer: ' . $offer['price'] . '</li>';
-                        }
-                        echo '</ul>';
-                    } else {
-                        echo '<p>No offers yet.</p>';
-                    }
-                    ?>
-                </div>
+            if (!empty($offers)) {
+                echo '<ul>';
+                foreach ($offers as $offer) {
+                    echo '<li>Buyer: ' . $offer['User_email'] . ', Offer: ' . $offer['amount'] . '</li>';
+                }
+                echo '</ul>';
+            } else {
+                echo '<p>No offers yet.</p>';
+            }
+            ?>
+        </div>
             <?php endforeach; ?>
         </div>
     </div>
