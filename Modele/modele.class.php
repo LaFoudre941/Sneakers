@@ -325,6 +325,19 @@ public function getUserByEmail($email) {
        }
 
     }
-}
+
+    public function getbestofferEmail($email) {
+    if ($this->unPdo != null) {
+        $requete = "SELECT * FROM Bestoffer WHERE User_email = :email;";
+        $select = $this->unPdo->prepare($requete);
+        $select->execute(array(':email' => $email));
+        $bestoffer = $select->fetchAll(PDO::FETCH_ASSOC);
+        return $bestoffer;
+    } else {
+        return null;
+    }
+
+}}
+
     
     

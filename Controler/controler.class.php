@@ -215,6 +215,10 @@ class Controleur {
     public function updateBestoffer($data) {
         $this->unModele->updateBestoffer($data);
     }
-        
+    
+
+    public function getbestofferEmail($emailVendeur) {
+        return $this->unModele->getbestofferEmail($emailVendeur);
+    }
     
 }

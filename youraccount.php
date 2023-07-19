@@ -35,6 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Récupérer les items associés à l'email du vendeur
 $items = [];
+$bestoffer = [];
+if ($user) {
+    $bestoffers = $unControleur->getbestofferEmail($email);
+}
+
 if ($user) {
     $items = $unControleur->getItemsEmail($email);
 }
@@ -72,6 +77,8 @@ require_once("vue/navbar.php");
             <p>Country: <?php echo $user['country']; ?></p>
             <p>Phone: <?php echo $user['phone']; ?></p>
 
+
+            <?php if ($user['whoAmI'] === 'seller'): ?>
             <h2>Items for Sale</h2><br>
             <?php foreach ($items as $item): ?>
                 <p>Item Name: <?php echo $item['name']; ?></p>
@@ -97,6 +104,28 @@ require_once("vue/navbar.php");
                     </form>
                 </div>
             <?php endforeach; ?>
+
+            <?php elseif ($user['whoAmI'] === 'buyer'): ?>
+
+            <h2>Your best Offers</h2><br>
+
+            <?php foreach ($bestoffers as $offer): ?>
+
+                <p>Item Name: <?php echo $offer['Item_idItem']; ?></p>
+                <p>Item Category: <?php echo $offer['accepted']; ?></p>
+                <p>Price: <?php echo $offer['price']; ?></p>
+
+            <?php endforeach; ?>
+
+
+
+
+        <?php elseif ($user['whoAmI'] === 'admin'): ?>
+        <ul>
+                <li><a href="allusers.php">All Users</a></li>
+                <li><a href="allitems.php">ALL Items</a></li>
+        </ul>
+        <?php endif; ?>
 
         <?php else: ?>
 
