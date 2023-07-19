@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['valider'])) {
+    if (isset($_POST['submit'])) {
         if (!empty($_POST['message']) && !empty($_POST['seller'])) {
             $message = nl2br(htmlspecialchars($_POST['message']));
             $receiver = $_POST['seller'];
@@ -19,12 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insertMessage = $bdd->prepare("INSERT INTO Chat (message, sender, receiver) VALUES (?, ?, ?)");
             $insertMessage->execute(array($message, $email, $receiver));
         } else {
-            echo "Veuillez compléter tous les champs.";
+            echo "Please fill in all fields.";
+        }
+    } elseif (isset($_POST['delete_chat'])) {
+        $seller_email = isset($_POST['seller']) ? $_POST['seller'] : '';
+
+        if (!empty($seller_email)) {
+            $deleteMessages = $bdd->prepare('DELETE FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)');
+            $deleteMessages->execute(array($email, $seller_email, $seller_email, $email));
+        } else {
+            $deleteAllMessages = $bdd->prepare('DELETE FROM Chat WHERE sender = ? OR receiver = ?');
+            $deleteAllMessages->execute(array($email, $email));
         }
     }
 }
 
-// Récupérer la liste des vendeurs
+// Retrieve the list of sellers
 $sellersQuery = $bdd->prepare('SELECT email, name FROM User WHERE whoAmI = ?');
 $sellersQuery->execute(array('seller'));
 $sellers = $sellersQuery->fetchAll();
@@ -34,7 +44,7 @@ $sellers = $sellersQuery->fetchAll();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Messagerie instantanée</title>
+    <title>Instant Messaging</title>
     <meta charset="utf-8">
     <link href="./Vue/CSS/CSS.css" rel="stylesheet" />
 
@@ -45,16 +55,16 @@ $sellers = $sellersQuery->fetchAll();
 require_once("vue/navbar.php");
 ?>
     <div class="wrapper">
-        <h1>Messagerie instantanée</h1>
+        <h1>Instant Messaging</h1>
         <form method="POST" action="" align="center">
             <div class="form-group">
-                <label for="message">Message :</label>
-                <textarea name="message" id="message" class="form-control" required></textarea>
+                <label for="message">Message:</label>
+                <textarea name="message" id="message" class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <label for="seller">Vendeur :</label>
+                <label for="seller">Seller:</label>
                 <select name="seller" id="seller" class="form-control" required>
-                    <option value="">Choisir un vendeur</option>
+                    <option value="">Choose a seller</option>
                     <?php
                     foreach ($sellers as $seller) {
                         echo "<option value=\"" . $seller['email'] . "\">" . $seller['name'] . "</option>";
@@ -62,43 +72,47 @@ require_once("vue/navbar.php");
                     ?>
                 </select>
             </div>
-            <button type="submit" name="valider" class="btn btn-primary">Envoyer</button>
-            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+            <button type="submit" name="submit" class="btn btn-primary">Send</button>
+            <button type="submit" name="delete_chat" class="btn btn-danger">Delete Chat</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
         </form>
 
         <section id="messages">
             <?php
-            if (isset($_POST['seller'])) {
+            if (isset($_POST['seller']) && !isset($_POST['delete_chat'])) {
                 $seller_email = $_POST['seller'];
-            } else {
-                $seller_email = '';
-            }
 
-            $messages = $bdd->prepare('SELECT * FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY id');
-            $messages->execute(array($email, $seller_email, $seller_email, $email));
+                $messages = $bdd->prepare('SELECT * FROM Chat WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY id');
+                $messages->execute(array($email, $seller_email, $seller_email, $email));
 
-            while ($message = $messages->fetch()) {
-                if ($message['sender'] === $email) {
-                    ?>
-                    <div class="message outgoing">
-                        <p><?= $message['message'] ?></p>
-                    </div>
-                    <?php
-                } else {
-                    ?>
-                    <div class="message incoming">
-                        <p><?= $message['message'] ?></p>
-                    </div>
-                    <?php
+                while ($message = $messages->fetch()) {
+                    if ($message['sender'] === $email) {
+                        ?>
+                        <div class="message outgoing">
+                            <p>From: You</p>
+                            <p>To: <?= $seller['name'] ?></p>
+                            <p><?= $message['message'] ?></p>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="message incoming">
+                            <p>From: <?= $seller['name'] ?></p>
+                            <p>To: You</p>
+                            <p><?= $message['message'] ?></p>
+                        </div>
+                        <?php
+                    }
                 }
             }
             ?>
         </section>
+
+        <button onclick="location.href='index.php'" class="btn btn-secondary">Return to Home</button>
+
     </div>
 
     <script>
-        setInterval(load_messages, 1000);
-
         function load_messages() {
             $('#messages').load('loadMessages.php');
         }
