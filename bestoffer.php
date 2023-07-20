@@ -119,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </form>
                 </div>
                 <div class="offers">
-                <h4>Previous Offers:</h4>
 
         </div>
                 </div>
