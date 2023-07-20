@@ -351,6 +351,7 @@ public function getUserByEmail($email) {
     }
     }
 
+
     public function DeclineBestOffer($id) {
     if ($this->unPdo != null) {
         $requete = "UPDATE Bestoffer SET accepted = 'declined' WHERE IdBestoffer = :id;";
@@ -374,5 +375,15 @@ public function getUserByEmail($email) {
 
 
 
+
+    public function getItemImage($itemId)
+    {
+        $query = "SELECT image FROM Item WHERE idItem = :itemId";
+        $stmt = $this->unPdo->prepare($query);
+        $stmt->bindParam(':itemId', $itemId);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['image'];
+    }
 
 }

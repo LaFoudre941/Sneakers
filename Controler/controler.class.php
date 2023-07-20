@@ -234,4 +234,8 @@ class Controleur {
     }
 
     
+    public function getItemImage($itemId)
+    {
+        return $this->unModele->getItemImage($itemId);
+    }
 }
