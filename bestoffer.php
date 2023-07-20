@@ -9,6 +9,7 @@ $unControleur = new Controleur();
 $items = $unControleur->getItems();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
     if (isset($_POST['Item_idItem']) && isset($_POST['offer_price'])) {
         $itemId = $_POST['Item_idItem'];
         $offerPrice = $_POST['offer_price'];
@@ -18,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: login.php");
             exit;
         }
+        $emailBuyer = $_SESSION['email'];
 
-        
     }
 }
 ?>
