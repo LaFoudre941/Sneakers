@@ -225,4 +225,8 @@ class Controleur {
         return $this->unModele->getbestoffervEmail($email);
     }
     
+    public function getItemImage($itemId)
+    {
+        return $this->unModele->getItemImage($itemId);
+    }
 }
