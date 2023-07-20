@@ -96,7 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
             </div>
             <?php foreach ($items as $item): ?>
                 <div class="product-item">
-                    <div class="product-image" style="background-image: url('./Vue/images/giphy1.gif');"></div>
+                    <?php if ($item['image'] === NULL): ?>
+                        <div class="product-image" style="background-image: url('./Vue/images/giphy1.gif');"></div>
+                    <?php else: ?>
+                        <?php echo '<img src="data:image/png;base64,'.base64_encode($item['image']).'">';?>
+                    <?php endif; ?>
+                    
                     <div class="product-details">
                         <h2 class="product-title"><?= $item['name'] ?></h2>
                         <p class="product-description"><?= $item['info'] ?></p>
@@ -108,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['item_id'])) {
                     </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
         </div>
 
