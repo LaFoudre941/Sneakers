@@ -224,5 +224,14 @@ class Controleur {
     public function getbestoffervEmail($email) {
         return $this->unModele->getbestoffervEmail($email);
     }
+
+    public function DeclineBestOffer($id){
+        return $this->unModele->DeclineBestOffer($id);
+    }
+
+    public function AccepteBestOffer($id) {
+        return $this->unModele->AccepteBestOffer($id);
+    }
+
     
 }

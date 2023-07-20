@@ -113,7 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="make-offer">
-                    <form method="POST">
+                    <form method="POST" name="bestoffer" action="bestoffer.php">
+                        <input type="hidden" name="name" value="<?= $item['name'] ?>">                        
                         <input type="hidden" name="Item_idItem" value="<?= $item['idItem'] ?>">
                         <input type="number" name="offer_price" min="0" placeholder="Your offer">
                         <br><br>
@@ -133,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['bestoffer'])) {
             $data = array(
                 "offer_price" => $_POST["offer_price"],
+                "name" => $_POST["name"],
                 "email" => $emailBuyer,
                 "Item_idItem" => $_POST["Item_idItem"],
             );

@@ -119,9 +119,26 @@ require_once("vue/navbar.php");
 
             <?php foreach ($bestoffervs as $offerv): ?>
 
-                <p>Item Name: <?php echo $offerv['Item_idItem']; ?></p>
-                <p>Item Category: <?php echo $offerv['accepted']; ?></p>
-                <p>Price: <?php echo $offerv['price']; ?></p>
+                <p>Item Name: <?php echo $offerv['name_item']; ?></p>
+                <p>Price: <?php echo $offerv['bestprice']; ?></p>
+                <p>Email buyer: <?php echo $offerv['User_email']; ?></p>
+                <form method="post">
+    <input type="hidden" name="IdBestoffer" value="<?php echo $offerv['IdBestoffer']; ?>">
+    <button name="Accepte">Accepte</button>
+    <button name="Decline">Decline</button>
+</form>
+
+<?php  
+if (isset($_POST['Accepte'])) {
+    $unControleur->AccepteBestOffer($_POST["IdBestoffer"]);
+}
+
+if (isset($_POST['Decline'])) {
+    $unControleur->DeclineBestOffer($_POST["IdBestoffer"]);
+}
+?>
+
+                <hr>
 
             <?php endforeach; ?>
 
@@ -131,9 +148,11 @@ require_once("vue/navbar.php");
 
             <?php foreach ($bestoffers as $offer): ?>
 
-                <p>Item Name: <?php echo $offer['Item_idItem']; ?></p>
-                <p>Item Category: <?php echo $offer['accepted']; ?></p>
-                <p>Price: <?php echo $offer['price']; ?></p>
+                <p>Item Name: <?php echo $offer['name_item']; ?></p>
+                <p>Valitated ?: <?php echo $offer['accepted']; ?></p>
+                <p>Price: <?php echo $offer['bestprice']; ?></p>
+
+                <hr>
 
             <?php endforeach; ?>
 

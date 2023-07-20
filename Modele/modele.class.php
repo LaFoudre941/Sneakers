@@ -318,8 +318,8 @@ public function getUserByEmail($email) {
 
     public function updateBestoffer($data) {
         if ($this->unPdo != null) {
-           $requete = "INSERT INTO Bestoffer (price, User_email, Item_idItem) VALUES (:price, :emailuser, :idItem);";
-            $donnees = array(":price" => $data['offer_price'], ":emailuser" => $data['email'], ":idItem" => $data['Item_idItem']);
+           $requete = "INSERT INTO Bestoffer (bestprice, name_item, User_email, Item_idItem) VALUES (:price, :name_item, :emailuser, :idItem);";
+            $donnees = array(":price" => $data['offer_price'], ":name_item" => $data['name'], ":emailuser" => $data['email'], ":idItem" => $data['Item_idItem']);
            $select = $this->unPdo->prepare($requete);
            $select->execute($donnees);
            
@@ -350,5 +350,29 @@ public function getUserByEmail($email) {
         return null;
     }
     }
+
+    public function DeclineBestOffer($id) {
+    if ($this->unPdo != null) {
+        $requete = "UPDATE Bestoffer SET accepted = 'declined' WHERE IdBestoffer = :id;";
+        $donnees = array(":id" => $id);
+        $update = $this->unPdo->prepare($requete);
+        $update->execute($donnees);
+
+    }
+    }
+
+    public function AccepteBestOffer($id) {
+    if ($this->unPdo != null) {
+        $requete = "UPDATE Bestoffer SET accepted = 'accepted' WHERE IdBestoffer = :id;";
+        $donnees = array(":id" => $id);
+        $update = $this->unPdo->prepare($requete);
+        $update->execute($donnees);
+
+    }
+    }
+
+
+
+
 
 }

@@ -149,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Chat` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `VenteSneakers`.`Bestoffer` (
   `idBestoffer` INT NOT NULL AUTO_INCREMENT,
-  `price` INT NOT NULL,
+  `name_item` VARCHAR(255) NOT NULL,  
+  `bestprice` INT NOT NULL,
   `accepted` VARCHAR(100),
   `User_email` VARCHAR(100) NOT NULL,
   `Item_idItem` INT NOT NULL,
