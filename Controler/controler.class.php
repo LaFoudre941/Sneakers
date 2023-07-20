@@ -233,9 +233,18 @@ class Controleur {
         return $this->unModele->AccepteBestOffer($id);
     }
 
-    
+    public function UpdatePriceBestOffer($id, $data)
+    {
+        return $this->unModele->UpdatePriceBestOffer($id, $data);
+    }
+
+
     public function getItemImage($itemId)
     {
         return $this->unModele->getItemImage($itemId);
     }
+
+
+
+
 }

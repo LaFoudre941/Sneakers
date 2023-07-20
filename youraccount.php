@@ -123,18 +123,25 @@ require_once("vue/navbar.php");
                 <p>Price: <?php echo $offerv['bestprice']; ?></p>
                 <p>Email buyer: <?php echo $offerv['User_email']; ?></p>
                 <form method="post">
-    <input type="hidden" name="IdBestoffer" value="<?php echo $offerv['IdBestoffer']; ?>">
-    <button name="Accepte">Accepte</button>
-    <button name="Decline">Decline</button>
-</form>
+                <input type="hidden" name="bestprice" value="<?php echo $offerv['bestprice']; ?>">
+                <input type="hidden" name="idBestoffer" value="<?php echo $offerv['idBestoffer']; ?>">
+                <button name="Accepte">Accepte</button>
+                <button name="Decline">Decline</button>
+                </form>
 
 <?php  
 if (isset($_POST['Accepte'])) {
-    $unControleur->AccepteBestOffer($_POST["IdBestoffer"]);
+    $unControleur->AccepteBestOffer($_POST["idBestoffer"]);
+    $data = array(
+            "bestprice" => $_POST["bestprice"],
+        );
+    $unControleur->UpdatePriceBestOffer($_POST["bestprice"], $data);
+
+
 }
 
 if (isset($_POST['Decline'])) {
-    $unControleur->DeclineBestOffer($_POST["IdBestoffer"]);
+    $unControleur->DeclineBestOffer($_POST["idBestoffer"]);
 }
 ?>
 

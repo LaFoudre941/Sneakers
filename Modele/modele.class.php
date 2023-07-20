@@ -354,7 +354,7 @@ public function getUserByEmail($email) {
 
     public function DeclineBestOffer($id) {
     if ($this->unPdo != null) {
-        $requete = "UPDATE Bestoffer SET accepted = 'declined' WHERE IdBestoffer = :id;";
+        $requete = "UPDATE Bestoffer SET accepted = 'NO' WHERE IdBestoffer = :id;";
         $donnees = array(":id" => $id);
         $update = $this->unPdo->prepare($requete);
         $update->execute($donnees);
@@ -364,7 +364,7 @@ public function getUserByEmail($email) {
 
     public function AccepteBestOffer($id) {
     if ($this->unPdo != null) {
-        $requete = "UPDATE Bestoffer SET accepted = 'accepted' WHERE IdBestoffer = :id;";
+        $requete = "UPDATE Bestoffer SET accepted = 'YES' WHERE IdBestoffer = :id;";
         $donnees = array(":id" => $id);
         $update = $this->unPdo->prepare($requete);
         $update->execute($donnees);
@@ -372,18 +372,39 @@ public function getUserByEmail($email) {
     }
     }
 
+    public function UpdatePriceBestOffer($id, $data)
+    {
+        if ($this->unPdo != null) {
+        $requete = "UPDATE Item SET price=:price WHERE idItem = :id";
+        $donnees = array(":id" => $id, ":price" => $data['bestprice']);
+        $select = $this->unPdo->prepare($requete);
+        $select->execute($donnees);
+
+
+
+    }
+    }
+
+
+
+
 
 
 
 
     public function getItemImage($itemId)
     {
+        if ($this->unPdo != null) {
         $query = "SELECT image FROM Item WHERE idItem = :itemId";
         $stmt = $this->unPdo->prepare($query);
         $stmt->bindParam(':itemId', $itemId);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['image'];
+        }
     }
+
+
+    
 
 }
